@@ -14,7 +14,7 @@ import { ITableProps, TableColumn, TableRecord } from '../..'
 import { isColumnReadonly, isColumnVisible } from '../../helpers/common'
 import { getPersistentStorageValue, updatePersistentStorage } from '../../helpers/persistentStorage'
 import { ResizableColumnsContext, STICKY_HEADER_CLASS, StickyHeaderWrapper } from '../../helpers/stickyHeader'
-import { VirtualTableContext } from '../../helpers/virtual'
+import { VirtualTableContext } from '../../helpers/virtual/VirtualTableContext'
 import { ResizableHeaderCellProps, SetColumns } from './types'
 
 import { addWidthFromStorage, applyResizingMode, selectAutoResizingMode, resizeColumns } from './helpers'
