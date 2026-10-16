@@ -74,10 +74,10 @@ const renderVirtualModule = (props: Partial<ITableProps>) => {
 
 describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
   /** Body table with selection, expand and two data columns, as antd renders it */
-  const renderStickyHeader = (
+  const stickyHeaderFixture = (
     hasRowSelection: boolean,
-    Wrapper: typeof StickyHeaderWrapper | typeof VirtualTanstackStickyHeaderWrapper = StickyHeaderWrapper
-  ) => render(
+    Wrapper: typeof StickyHeaderWrapper | typeof VirtualTanstackStickyHeaderWrapper
+  ) => (
     <div className={STICKY_HEADER_CLASS}>
       <div className="ant-table" />
       <table>
@@ -96,6 +96,15 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       </table>
     </div>
   )
+  const renderStickyHeader = (
+    hasRowSelection: boolean,
+    Wrapper: typeof StickyHeaderWrapper | typeof VirtualTanstackStickyHeaderWrapper = StickyHeaderWrapper
+  ) => {
+    const result = render(stickyHeaderFixture(hasRowSelection, Wrapper))
+    return { ...result, rerender: () => result.rerender(stickyHeaderFixture(hasRowSelection, Wrapper)) }
+  }
+  const getHelperCells = (container: HTMLElement) =>
+    container.querySelectorAll(`.${STICKY_HEADER_CLASS} > table > thead > tr:first-child > th`)
 
   describe('StickyHeaderWrapper without the flag', () => {
     it('renders the helper row and the colgroup from row selection and visible columns', () => {
@@ -144,11 +153,22 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
     })
   })
 
-  describe('VirtualTanstackStickyHeaderWrapper', () => {
-    it('repeats the body column structure and copies the body column widths', () => {
+  describe('StickyHeaderWrapper with isVirtualTanstack (VirtualTanstackStickyHeaderWrapper)', () => {
+    it('renders the default cells until the body columns are measured', () => {
       const { container } = renderStickyHeader(true, VirtualTanstackStickyHeaderWrapper)
 
-      const helperCells = container.querySelectorAll(`.${STICKY_HEADER_CLASS} > table > thead > tr:first-child > th`)
+      const helperCells = getHelperCells(container)
+      expect(helperCells).toHaveLength(3)
+      expect(helperCells[0]).toHaveClass('ant-table-selection-column')
+      expect((helperCells[1] as HTMLElement).style.width).toBe('200px')
+    })
+
+    it('repeats the body column structure and copies the body column widths', () => {
+      const { container, rerender } = renderStickyHeader(true, VirtualTanstackStickyHeaderWrapper)
+      // the body columns are measured from the helper thead, its ref is attached after the first commit
+      rerender()
+
+      const helperCells = getHelperCells(container)
       expect(helperCells).toHaveLength(4)
       expect(helperCells[0]).toHaveClass('ant-table-selection-column')
       expect(helperCells[1]).toHaveClass('ant-table-expand-icon-column')
