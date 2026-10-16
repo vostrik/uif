@@ -193,21 +193,21 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
 
 export const VirtualTanstack = <T extends TableRecord = TableRecord>(
   Component: TableComponent<T>
-): TableComponent<T> => function VirtualTanstackModule ({ __EXPERIMENTAL__VIRTUAL_TANSTACK, __EXPERIMENTAL__VIRTUAL, ...props }) {
-  const isVirtualTanstack = Boolean(__EXPERIMENTAL__VIRTUAL_TANSTACK ?? __EXPERIMENTAL__VIRTUAL)
-
-  // a function body is a custom body renderer (e.g. useVT) that virtualizes on its own
-  const virtualizesBody = isVirtualTanstack && typeof props.components?.body !== 'function'
+): TableComponent<T> => function VirtualTanstackModule (props) {
+  const body = props.components?.body
+  // a function body is a custom body renderer that virtualizes on its own
+  const isVirtualTanstack = Boolean(props.__EXPERIMENTAL__VIRTUAL_TANSTACK) && typeof body !== 'function'
 
   const components = useMemo(() => {
-    const body = props.components?.body
-    if (!virtualizesBody || typeof body === 'function') return props.components
+    if (!isVirtualTanstack || typeof body === 'function') return props.components
 
     return {
       ...props.components,
       body: { ...body, wrapper: createVirtualTanstackBody(body?.wrapper ?? 'tbody') }
     }
-  }, [virtualizesBody, props.components])
+  }, [isVirtualTanstack, props.components])
 
-  return <Component {...props} __EXPERIMENTAL__VIRTUAL_TANSTACK={virtualizesBody} components={components} />
+  if (!isVirtualTanstack) return <Component {...props} />
+
+  return <Component {...props} components={components} />
 }
