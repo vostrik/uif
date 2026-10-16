@@ -33,6 +33,7 @@ import {
   IFiltersSavingSettings
 } from './modules/SortingAndFilters'
 import { GetLeftItemsProps, ToolbarProps } from './modules/ToolbarIntegration'
+import { TableVirtualization } from './modules/Virtualization'
 
 export type TableThemeProps = {
   theme?: ThemeKey
@@ -444,6 +445,22 @@ export type ITableProps<T extends TableRecord = TableRecord> = Omit<
   /** Key for localStorage to store different settings - column width, sorting, filters, etc... */
   storageKey?: string,
 
+  /**
+   * Render only the rows and columns that are in view.
+   *
+   * `true` turns both axes on with the defaults; an object tunes them.
+   *
+   * Row windowing requires that the table own row selection: with `rowSelection` set and
+   * `builtInRowSelection` not on, the rows are left alone and only the columns are windowed.
+   * antd derives selection from the rows it was handed, so a windowed table would quietly narrow
+   * what "selected" and "select all" mean; the built-in selection keeps its own list against the
+   * whole data and is unaffected. A table with no selection at all windows its rows either way.
+   *
+   * Column windowing needs every visible column to have a numeric width, which
+   * `resizingMode: 'scroll'` provides, and is held back while `stickyHeader` is set.
+   */
+  virtualization?: boolean | TableVirtualization,
+
   // Filters
   /** Filters to set by default. Prop is applied only once, further changes won't change the filters. If you want to
    * dynamically change filters, use externalFilters.
@@ -531,5 +548,4 @@ export type ITableProps<T extends TableRecord = TableRecord> = Omit<
   __EXPERIMENTAL__GROUP__SELECTION?: boolean
   /** Experimental flag to enable virtualization. Not ready to use in production */
   __EXPERIMENTAL__VIRTUAL?: boolean
-  __EXPERIMENTAL__VIRTUAL_TANSTACK?: boolean
 } & TestingProps

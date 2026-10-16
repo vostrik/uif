@@ -205,7 +205,7 @@ export const Fetch: Story = {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-// `__EXPERIMENTAL__VIRTUAL_TANSTACK` prop: 40 000 rows of any height, sticky header and all the table features
+// `virtualization` prop: 40 000 rows of any height, sticky header and built-in row selection
 // ---------------------------------------------------------------------------------------------------------------------
 
 const ROWS_COUNT = 40_000
@@ -302,19 +302,12 @@ const virtualColumns: TableColumn<VirtualRow>[] = [
   }))
 ]
 
-// Hoisted: the table re-applies `expandable` when its identity changes
-const virtualExpandable: ITableProps<VirtualRow>['expandable'] = {
-  rowExpandable: row => row.key % 3 === 0,
-  expandedRowRender: row => <P>Details of {row.name}: {row.description}</P>
-}
-
 export const VirtualStickyHeader40k: Story = {
   name: 'Virtual, sticky header, 40k rows',
   args: {
     resizingMode: 'scroll'
   },
   render: (args: ITableProps) => {
-    const [selected, setSelected] = useState<Key[]>([])
     const [dataSource, setDataSource] = useState(virtualData)
     const toolbar = useMemo(() => ({
       sticky: 0,
@@ -325,21 +318,17 @@ export const VirtualStickyHeader40k: Story = {
 
     return (
       <Wrapper>
-        <StyledText>Selected: {selected.length}</StyledText>
         <Table<VirtualRow>
           {...(args as ITableProps<VirtualRow>)}
-          __EXPERIMENTAL__VIRTUAL_TANSTACK
+          virtualization
           stickyHeader={40}
           pagination={false}
           toolbar={toolbar as ITableProps<VirtualRow>['toolbar']}
           dataSource={dataSource}
           columns={virtualColumns}
           onDragEnd={setDataSource}
-          rowSelection={{
-            selectedRowKeys: selected,
-            onChange: setSelected
-          }}
-          expandable={virtualExpandable}
+          // antd row selection would keep the rows from being windowed: the built-in one works against all data
+          rowSelection={{ builtInRowSelection: true }}
         />
       </Wrapper>
     )
