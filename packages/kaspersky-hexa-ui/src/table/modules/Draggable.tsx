@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual'
 import React, {
+  forwardRef,
   useCallback,
   useEffect,
   useMemo,
@@ -26,7 +27,8 @@ const DragHandle = sortableHandle(() => (
     <DragDrop className="drag-handle" />
   </span>
 ))
-const SortableItem = sortableElement((props: any) => <tr {...props} />)
+// rowRef: the row element for a ref passed to the row (virtualization measures rows through it)
+const SortableItem = sortableElement(({ rowRef, ...props }: any) => <tr ref={rowRef} {...props} />)
 const SortableContainer = sortableContainer((props: any) => (
   <tbody {...props} />
 ))
@@ -164,7 +166,7 @@ export const DraggableTable = <T extends TableRecord = TableRecord> (
 
     // any in original type from rc-table
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const DraggableBodyRow = (rowProps: any) => {
+    const DraggableBodyRow = forwardRef<HTMLTableRowElement, any>(function DraggableBodyRow (rowProps, ref) {
       const index = rowsRef.current.findIndex(
         (x) => x.key === rowProps['data-row-key']
       )
@@ -172,11 +174,11 @@ export const DraggableTable = <T extends TableRecord = TableRecord> (
       const row = rowsRef.current[index]
 
       if (!row || row._outOfDndContext) {
-        return <tr {...rowProps} />
+        return <tr ref={ref} {...rowProps} />
       }
 
-      return <SortableItem disabled={row._disabled} index={index} {...rowProps} />
-    }
+      return <SortableItem disabled={row._disabled} index={index} rowRef={ref} {...rowProps} />
+    })
 
     return {
       body: {
