@@ -55,7 +55,7 @@ export const tableModules: TableModule[] = [
   ResizableColumns,
   TableAccordion,
   EmptyCellDash,
-  Virtual, // must be applied before (inside) DraggableTable to wrap its body components
+  Virtual,
   DraggableTable,
   ColumnsSelection,
   SidebarFilters,
