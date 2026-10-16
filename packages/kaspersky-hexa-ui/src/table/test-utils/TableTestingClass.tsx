@@ -266,6 +266,34 @@ export class TableTestingClass {
         .filter((text): text is string => !!text)
   }
 
+  // --- virtual: оконный рендер строк и колонок -----------------------------
+
+  readonly virtual = {
+    /** Строки-распорки, стоящие вместо неотрисованных (`.hexa-ui-virtual-spacer`). */
+    getSpacers: (): HTMLTableRowElement[] =>
+      this.queryAll<HTMLTableRowElement>('.hexa-ui-virtual-spacer'),
+
+    /** Высоты распорок в порядке следования — из инлайнового стиля их ячейки. */
+    getSpacerHeights: (): number[] => this.virtual.getSpacers().map(row => (
+      // Высота стоит на самой строке: строка красит фон во всю ширину таблицы, а её единственная
+      // ячейка при фиксированной раскладке шире первой колонки не бывает.
+      Number.parseInt(row.style.height, 10) || 0
+    )),
+
+    /** Абсолютные индексы отрисованных строк (атрибут `data-index`, по нему же меряет виртуализатор). */
+    getRenderedIndexes: (): number[] => this.rows.getAll()
+      .map(row => Number(row.getAttribute('data-index')))
+      .filter(index => !Number.isNaN(index)),
+
+    /** Ячейки колонок-распорок (`.hexa-ui-virtual-spacer-cell`). */
+    getSpacerCells: (): HTMLTableCellElement[] =>
+      this.queryAll<HTMLTableCellElement>('.hexa-ui-virtual-spacer-cell'),
+
+    /** Ширины колонок из `<colgroup>` — сумма должна совпадать с полной шириной таблицы. */
+    getColumnWidths: (): number[] => this.queryAll<HTMLTableColElement>('colgroup col')
+      .map(col => Number.parseInt(col.style.width ?? '0', 10) || 0)
+  }
+
   // --- selection: выбор строк / чекбоксы ----------------------------------
 
   private get headerCheckboxId (): string {

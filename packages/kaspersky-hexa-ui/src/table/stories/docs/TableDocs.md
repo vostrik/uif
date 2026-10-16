@@ -61,6 +61,21 @@ export const UsersTable = () => {
 * `'scroll'` - включает кастомный плавающий горизонтальный скроллбар, при этом отключается "sticky footer" и "sticky header". Фактически значение `'scroll'` ничего не делает с фичей ресайза, но при этом на нем завязаны стили для горизонтального скролла и стик-хередры-футеры (файл `tableCss.ts`).
 * `'manual'` - не используется
 
+##### virtualization?: boolean | TableVirtualization
+Отрисовываются только видимые строки и колонки (модуль `modules/Virtualization`, подробности — в его
+`README.md`). `true` включает обе оси с настройками по умолчанию, объект их настраивает. Пример — сторя
+`Table/[DEV]/Virtual → Virtual, sticky header, 40k rows` и стори `Table/[DEV]/Virtualization`.
+
+Ограничения:
+* окно по строкам работает, только если выбором строк владеет таблица: `rowSelection` с `builtInRowSelection: true`
+  или без `rowSelection`; с antd-выбором оконятся только колонки;
+* с `expandedRowRender` виртуализация отключается;
+* окно по колонкам требует числовой ширины у всех видимых колонок (`resizingMode: 'scroll'`) и не включается
+  при `stickyHeader`;
+* не совмещается с `useVT` и `pagination.virtualInfiniteScroll`.
+* подсветка совпадений поиска (`enableSearchHighlighting`) применяется только к строкам, отрисованным в момент поиска;
+  строки, появившиеся при прокрутке, не подсвечиваются.
+
 
 #### Filter props
 

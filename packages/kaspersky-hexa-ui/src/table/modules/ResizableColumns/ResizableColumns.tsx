@@ -13,6 +13,7 @@ import { ITableProps, TableColumn, TableRecord } from '../..'
 import { isColumnReadonly, isColumnVisible } from '../../helpers/common'
 import { getPersistentStorageValue, updatePersistentStorage } from '../../helpers/persistentStorage'
 import { ResizableColumnsContext, STICKY_HEADER_CLASS, StickyHeaderWrapper } from '../../helpers/stickyHeader'
+import { VirtualizationStickyHeaderWrapper } from '../../helpers/virtualizationStickyHeader/VirtualizationStickyHeaderWrapper'
 import { ResizableHeaderCellProps, SetColumns } from './types'
 
 import { addWidthFromStorage, applyResizingMode, selectAutoResizingMode, resizeColumns } from './helpers'
@@ -172,13 +173,14 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
     maxColumnsForAutoResizing = 1,
     defaultColumnWidth = DEFAULT_COLUMN_WIDTH
   } = props
+  const isVirtualization = Boolean(props.virtualization)
   const components = useMemo(() => ({
     ...props.components,
     header: {
       cell: ResizableTitle,
-      ...(props.stickyHeader !== undefined && { wrapper: StickyHeaderWrapper })
+      ...(props.stickyHeader !== undefined && { wrapper: isVirtualization ? VirtualizationStickyHeaderWrapper : StickyHeaderWrapper })
     }
-  }), [props.components, props.stickyHeader])
+  }), [props.components, props.stickyHeader, isVirtualization])
 
   const [columnsFromStorage, setColumnsFromStorage] = useState(
     addWidthFromStorage<T>({ columns: props.columns, storageKey: props.storageKey })
@@ -277,7 +279,8 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
    */
   useUpdateEffect(() => {
     let interval: any
-    if (props.stickyHeader !== undefined && isTableVisible) {
+    // with virtualization the sticky header copies body column widths itself (VirtualizationColumnsWidthHelper)
+    if (props.stickyHeader !== undefined && isTableVisible && !isVirtualization) {
       interval = setInterval(() => {
         const tableWrapper = siblingRef.current!.parentNode!
         const colgroupColumns = tableWrapper.querySelectorAll('.table-scrolling-wrapper colgroup col')
@@ -312,7 +315,7 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
       }, 150)
     }
     return () => interval && clearInterval(interval)
-  }, [props.stickyHeader, props.dataSource, hasRowSelection, isTableVisible, props.columns])
+  }, [props.stickyHeader, props.dataSource, hasRowSelection, isTableVisible, props.columns, isVirtualization])
 
   useEffect(() => {
     setColumns((prevState) => {

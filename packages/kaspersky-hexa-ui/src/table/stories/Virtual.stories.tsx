@@ -6,10 +6,10 @@ import { Space } from '@src/space'
 import { Tag } from '@src/tag'
 import { P, Text } from '@src/typography'
 import { Meta } from '@storybook/react'
-import React, { Key, useCallback, useState } from 'react'
+import React, { Key, useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 
-import { Table, TableRecord, useVT } from '../'
+import { Table, TableColumn, TableRecord, useVT } from '../'
 import MetaData from '../__meta__/meta.json'
 import { ITableProps } from '../types'
 
@@ -198,6 +198,137 @@ export const Fetch: Story = {
             onChange: setSelected
           }}
           scroll={{ y: TABLE_BODY_HEIGHT }}
+        />
+      </Wrapper>
+    )
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// `virtualization` prop: 40 000 rows of any height, sticky header and built-in row selection
+// ---------------------------------------------------------------------------------------------------------------------
+
+const ROWS_COUNT = 40_000
+const WORDS = ['endpoint', 'policy', 'threat', 'quarantine', 'scan', 'update', 'agent', 'incident', 'rule', 'network']
+const STATUSES = ['Online', 'Offline', 'Critical', 'Warning']
+
+type VirtualRow = TableRecord & {
+  key: number,
+  name: string,
+  status: string,
+  description: string,
+  tags: string[]
+}
+
+// Deterministic "random" so rows (and their heights) are stable between renders
+const pseudoRandom = (seed: number) => {
+  const x = Math.sin(seed * 9301 + 49297) * 233280
+  return x - Math.floor(x)
+}
+
+const virtualData: VirtualRow[] = Array.from({ length: ROWS_COUNT }, (_, key) => ({
+  key,
+  name: `Device-${key}`,
+  status: STATUSES[key % STATUSES.length],
+  // from one word to several lines of text — rows of different heights
+  description: Array.from(
+    { length: 1 + Math.floor(pseudoRandom(key) ** 3 * 60) },
+    (_, i) => WORDS[(key + i) % WORDS.length]
+  ).join(' '),
+  tags: key % 7 === 0 ? WORDS.slice(0, 1 + key % WORDS.length) : []
+}))
+
+const virtualColumns: TableColumn<VirtualRow>[] = [
+  {
+    key: 'name',
+    dataIndex: 'name',
+    title: 'Name',
+    width: 160,
+    isSortable: true,
+    sorter: (a, b, isAsc) => (a.key - b.key) * (isAsc ? 1 : -1)
+  },
+  {
+    key: 'status',
+    dataIndex: 'status',
+    title: 'Status',
+    width: 120,
+    isSortable: true,
+    filters: STATUSES.map(status => ({
+      name: status,
+      filter: (row: VirtualRow) => row.status === status
+    }))
+  },
+  {
+    key: 'description',
+    dataIndex: 'description',
+    title: 'Description (any length)',
+    isSortable: true,
+    sorter: (a, b, isAsc) => (a.description.length - b.description.length) * (isAsc ? 1 : -1)
+  },
+  {
+    key: 'tags',
+    dataIndex: 'tags',
+    title: 'Tags',
+    width: 220,
+    render: (tags: string[]) => (
+      <Space gap={4} direction="vertical" align="flex-start">
+        {tags.map(tag => <Tag key={tag}>{tag}</Tag>)}
+      </Space>
+    )
+  },
+  // more columns than fit on the screen: 20 in total, the table scrolls horizontally
+  ...[
+    'IP address',
+    'OS',
+    'Agent version',
+    'Owner',
+    'Group',
+    'Last seen',
+    'CPU',
+    'RAM',
+    'Disk',
+    'Location',
+    'Policy',
+    'Threats',
+    'Updates',
+    'Uptime',
+    'Vendor',
+    'Serial number'
+  ].map((title, i): TableColumn<VirtualRow> => ({
+    key: `extra-${i}`,
+    title,
+    width: 140,
+    render: (_: unknown, row: VirtualRow) => `${title} ${(row.key * (i + 7)) % 997}`
+  }))
+]
+
+export const VirtualStickyHeader40k: Story = {
+  name: 'Virtual, sticky header, 40k rows',
+  args: {
+    resizingMode: 'scroll'
+  },
+  render: (args: ITableProps) => {
+    const [dataSource, setDataSource] = useState(virtualData)
+    const toolbar = useMemo(() => ({
+      sticky: 0,
+      left: [{ type: 'button', key: 'count', label: `Rows: ${dataSource.length}` }],
+      showColumns: true,
+      showSettingsSearch: true
+    }), [dataSource.length])
+
+    return (
+      <Wrapper>
+        <Table<VirtualRow>
+          {...(args as ITableProps<VirtualRow>)}
+          virtualization
+          stickyHeader={40}
+          pagination={false}
+          toolbar={toolbar as ITableProps<VirtualRow>['toolbar']}
+          dataSource={dataSource}
+          columns={virtualColumns}
+          onDragEnd={setDataSource}
+          // antd row selection would keep the rows from being windowed: the built-in one works against all data
+          rowSelection={{ builtInRowSelection: true }}
         />
       </Wrapper>
     )

@@ -296,8 +296,9 @@ export const useRowSelection = <T extends TableRecord = TableRecord> ({
 
   const disableSelectAllOnCurrentPage = dataSource.slice(0, pageSize).every(row => getCheckboxProps(row).disabled)
 
-  const rowSelection: RowSelectionAntd<T> = {
+  const rowSelection: RowSelectionAntd<T> & Pick<TableRowSelection<T>, 'builtInRowSelection'> = {
     ...restRowSelection,
+    builtInRowSelection: true,
     columnWidth: 0,
     columnTitle: hasSelectAll && restRowSelection.type !== 'radio' && (
       <HeaderCheckbox
