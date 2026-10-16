@@ -384,6 +384,11 @@ export type ITableProps<T extends TableRecord = TableRecord> = Omit<
   onPatchedColumnsChange?: (columns: TableColumn<T>[]) => void,
   useAccordion?: boolean,
   stickyHeader?: number,
+  /**
+   * Render only the rows visible in the scroll container (the window or the nearest scrollable parent).
+   * Rows may have any height. All table features keep working. Usually used together with pagination={false}
+   */
+  virtual?: boolean,
   stickyScrollbarOffset?: number,
   stickyFooter?: boolean,
   /** Sticky selection column, available only with resizingMode: scroll */
@@ -529,6 +534,6 @@ export type ITableProps<T extends TableRecord = TableRecord> = Omit<
 
   /** Experimental flag to enable group selection. Not ready to use in production. Group selection works only if builtInRowSelection is set to true */
   __EXPERIMENTAL__GROUP__SELECTION?: boolean
-  /** Experimental flag to enable virtualization. Not ready to use in production */
+  /** @deprecated Use `virtual` instead */
   __EXPERIMENTAL__VIRTUAL?: boolean
 } & TestingProps

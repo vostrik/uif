@@ -21,7 +21,7 @@ import { SidebarFilters } from './SidebarFilters'
 import { SortingAndFilters } from './SortingAndFilters'
 // import { ExpandableRows } from './ExpandableRows'
 import { ToolbarIntegration } from './ToolbarIntegration'
-import { VirtualTanstack as Virtual } from './Virtual'
+import { Virtual } from './Virtual'
 
 export type TableComponent<T extends TableRecord = TableRecord> = FC<ITableProps<T> & React.RefAttributes<TableRef>>
 export type TableModule<T extends TableRecord = TableRecord> = (Component: TableComponent<T>) => TableComponent<T>
@@ -43,6 +43,7 @@ export const composeWithModules = (Component: TableComponent, modules: TableModu
  * -ToolbarIntegration must be below SidebarFilters
  * -LocalizeColumnTitles must be below SortingAndFilters and SidebarFilters
  * -Groups must be above ColumnsSelection
+ * -Virtual must be above DraggableTable
  * -to be continued...
  */
 export const tableModules: TableModule[] = [
@@ -54,13 +55,13 @@ export const tableModules: TableModule[] = [
   ResizableColumns,
   TableAccordion,
   EmptyCellDash,
+  Virtual, // must be applied before (inside) DraggableTable to wrap its body components
   DraggableTable,
   ColumnsSelection,
   SidebarFilters,
   InfiniteScroll,
   ContextMenu,
   ToolbarIntegration,
-  Virtual, // in developing, not ready for use
   LocalizeColumnTitles,
   Filters,
   Initial,
