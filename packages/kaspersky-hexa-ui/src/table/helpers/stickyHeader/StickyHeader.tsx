@@ -30,7 +30,7 @@ export const TableStickyHeader = styled.div.withConfig({
   shouldForwardProp: prop => !tableCssProps.includes(prop as typeof tableCssProps[number])
 })<TableCssProps>`
   ${tableCss}
-
+  
   & .ant-table table col {
     min-width: unset;
   }
