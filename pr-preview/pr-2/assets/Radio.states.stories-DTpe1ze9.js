@@ -1,0 +1,10 @@
+import{S as n}from"./StatesMatrix-CO9h1aSB.js";import{R as s}from"./iframe-DNVAFsND.js";import{R as i}from"./Radio-Bh4SAWeM.js";import"./i18n-BMsVYjdT.js";import"./preload-helper-Dp1pzeXC.js";import"./AdditionalContent-D9yWR_3E.js";import"./HelpMessage-C_F_6WkG.js";import"./useId-CIwCpVbf.js";import"./generateId-BXJELych.js";import"./v4-BoP187Zn.js";import"./index-U8wWdTj8.js";import"./index-DO6FZTZA.js";import"./type-0ivux5bP.js";import"./useMergedState-ynS__ke0.js";import"./FormLabel-DZAlZE9m.js";import"./Tag-CWq2qS_r.js";import"./TextReducer-CcQuVU5v.js";import"./index-Bdb3sctg.js";import"./omit-DXgDXInf.js";import"./colors-C_cfvQV4.js";import"./wave-BJ1hX2v5.js";import"./Group-DazgOZHb.js";const F={title:"Screenshot Tests/Radio",component:i,tags:["!autodocs"]},d=[{key:"default",label:"Default"},{key:"hover",label:"Hover"},{key:"active",label:"Active"},{key:"focus-visible",label:"Focus visible"},{key:"readonly",label:"Readonly",readonly:!0},{key:"disabled",label:"Disabled",disabled:!0}],c=[{key:"unselected",label:"Unselected",selected:!1,invalid:!1},{key:"selected",label:"Selected",selected:!0,invalid:!1},{key:"invalid-unselected",label:"Invalid Unselected",selected:!1,invalid:!0},{key:"invalid-selected",label:"Invalid Selected",selected:!0,invalid:!0}],m=(t,l)=>s.createElement(i,{vertical:!1,value:l.selected?"v":void 0,onChange:()=>{},disabled:t.disabled,readonly:t.readonly,invalid:l.invalid,options:[{label:"Text value",value:"v",description:"Text value",tooltip:"Text value"}]}),e={name:"States",parameters:{controls:{include:[]},layout:"fullscreen"},render:()=>s.createElement(n,{rows:d,columns:c,renderCell:m})};var a,r,o;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:`{
+  name: 'States',
+  parameters: {
+    controls: {
+      include: []
+    },
+    layout: 'fullscreen'
+  },
+  render: () => <StatesMatrix rows={stateRows} columns={variantColumns} renderCell={renderStateCell} />
+}`,...(o=(r=e.parameters)==null?void 0:r.docs)==null?void 0:o.source}}};const H=["States"];export{e as States,H as __namedExportsOrder,F as default};
