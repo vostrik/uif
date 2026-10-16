@@ -26,7 +26,7 @@ import { TableComponent } from './index'
 
 const ESTIMATED_ROW_HEIGHT = 40
 const OVERSCAN = 10
-export const VIRTUAL_SPACER_CLASS = 'hexa-ui-table-virtual-spacer'
+export const VIRTUAL_TANSTACK_SPACER_CLASS = 'hexa-ui-table-virtual-tanstack-spacer'
 
 type ScrollElement = HTMLElement | Window
 
@@ -66,7 +66,7 @@ const flatten = (children: ReactNode, result: ReactNode[] = []): ReactNode[] => 
 
 const Spacer = forwardRef<HTMLTableRowElement, { height: number }>(function Spacer ({ height }, ref) {
   return (
-    <tr ref={ref} className={VIRTUAL_SPACER_CLASS} aria-hidden="true">
+    <tr ref={ref} className={VIRTUAL_TANSTACK_SPACER_CLASS} aria-hidden="true">
       {/* a single cell without colSpan: a big colSpan would add phantom columns to the table layout */}
       <td style={{ height, padding: 0, border: 0, background: 'transparent' }} />
     </tr>
@@ -75,8 +75,8 @@ const Spacer = forwardRef<HTMLTableRowElement, { height: number }>(function Spac
 
 type BodyWrapperProps = { children?: ReactNode } & Record<string, unknown>
 
-const createVirtualBody = (BaseWrapper: ElementType) =>
-  function VirtualTableBody ({ children, ...wrapperProps }: BodyWrapperProps) {
+const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
+  function VirtualTanstackTableBody ({ children, ...wrapperProps }: BodyWrapperProps) {
     // rc-table memoizes its body, so this runs only when data/columns change, not on scroll
     const [rows, serviceRows] = useMemo(() => {
       const bodyRows: ReactElement[] = []
@@ -124,7 +124,7 @@ const createVirtualBody = (BaseWrapper: ElementType) =>
       if (!tbody) return
       const sizes: number[] = []
       for (const tr of Array.from(tbody.children)) {
-        if (tr.classList.contains(VIRTUAL_SPACER_CLASS)) continue
+        if (tr.classList.contains(VIRTUAL_TANSTACK_SPACER_CLASS)) continue
         if (tr.hasAttribute('data-row-key')) sizes.push(0)
         if (sizes.length) sizes[sizes.length - 1] += tr.getBoundingClientRect().height
       }
@@ -180,10 +180,10 @@ const createVirtualBody = (BaseWrapper: ElementType) =>
 export const VirtualTanstack = <T extends TableRecord = TableRecord>(
   Component: TableComponent<T>
 ): TableComponent<T> => function VirtualTanstackModule ({ __EXPERIMENTAL__VIRTUAL_TANSTACK, __EXPERIMENTAL__VIRTUAL, ...props }) {
-  const isVirtual = Boolean(__EXPERIMENTAL__VIRTUAL_TANSTACK ?? __EXPERIMENTAL__VIRTUAL)
+  const isVirtualTanstack = Boolean(__EXPERIMENTAL__VIRTUAL_TANSTACK ?? __EXPERIMENTAL__VIRTUAL)
 
   // a function body is a custom body renderer (e.g. useVT) that virtualizes on its own
-  const virtualizesBody = isVirtual && typeof props.components?.body !== 'function'
+  const virtualizesBody = isVirtualTanstack && typeof props.components?.body !== 'function'
 
   const components = useMemo(() => {
     const body = props.components?.body
@@ -191,7 +191,7 @@ export const VirtualTanstack = <T extends TableRecord = TableRecord>(
 
     return {
       ...props.components,
-      body: { ...body, wrapper: createVirtualBody(body?.wrapper ?? 'tbody') }
+      body: { ...body, wrapper: createVirtualTanstackBody(body?.wrapper ?? 'tbody') }
     }
   }, [virtualizesBody, props.components])
 

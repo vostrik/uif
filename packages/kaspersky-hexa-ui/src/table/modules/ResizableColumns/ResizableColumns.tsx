@@ -16,7 +16,7 @@ import {
   ResizableColumnsContext,
   STICKY_HEADER_CLASS,
   StickyHeaderWrapper,
-  VirtualStickyHeaderWrapper
+  VirtualTanstackStickyHeaderWrapper
 } from '../../helpers/stickyHeader'
 import { ResizableHeaderCellProps, SetColumns } from './types'
 
@@ -177,14 +177,14 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
     maxColumnsForAutoResizing = 1,
     defaultColumnWidth = DEFAULT_COLUMN_WIDTH
   } = props
-  const isVirtual = Boolean(props.__EXPERIMENTAL__VIRTUAL_TANSTACK)
+  const isVirtualTanstack = Boolean(props.__EXPERIMENTAL__VIRTUAL_TANSTACK)
   const components = useMemo(() => ({
     ...props.components,
     header: {
       cell: ResizableTitle,
-      ...(props.stickyHeader !== undefined && { wrapper: isVirtual ? VirtualStickyHeaderWrapper : StickyHeaderWrapper })
+      ...(props.stickyHeader !== undefined && { wrapper: isVirtualTanstack ? VirtualTanstackStickyHeaderWrapper : StickyHeaderWrapper })
     }
-  }), [props.components, props.stickyHeader, isVirtual])
+  }), [props.components, props.stickyHeader, isVirtualTanstack])
 
   const [columnsFromStorage, setColumnsFromStorage] = useState(
     addWidthFromStorage<T>({ columns: props.columns, storageKey: props.storageKey })
@@ -284,7 +284,7 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
   useUpdateEffect(() => {
     let interval: any
     // with virtualization the sticky header copies body column widths itself (useStickyHeaderBodySync)
-    if (props.stickyHeader !== undefined && isTableVisible && !isVirtual) {
+    if (props.stickyHeader !== undefined && isTableVisible && !isVirtualTanstack) {
       interval = setInterval(() => {
         const tableWrapper = siblingRef.current!.parentNode!
         const colgroupColumns = tableWrapper.querySelectorAll('.table-scrolling-wrapper colgroup col')
@@ -319,7 +319,7 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
       }, 150)
     }
     return () => interval && clearInterval(interval)
-  }, [props.stickyHeader, props.dataSource, hasRowSelection, isTableVisible, props.columns, isVirtual])
+  }, [props.stickyHeader, props.dataSource, hasRowSelection, isTableVisible, props.columns, isVirtualTanstack])
 
   useEffect(() => {
     setColumns((prevState) => {
