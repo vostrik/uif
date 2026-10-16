@@ -10,7 +10,6 @@ import {
   TableCssProps
 } from '../../tableCss'
 import { findParentForClassName, isColumnVisible } from '../common'
-import { renderVirtualTanstackColumnsWidthHelper, useStickyHeaderBodySync } from '../virtualTanstack/useStickyHeaderBodySync'
 
 import { useResizableColumnsContext } from './ResizableColumnsContext'
 
@@ -47,10 +46,9 @@ export const TableStickyHeader = styled.div.withConfig({
   }
 `
 
-export function StickyHeaderWrapper ({ children, className, isVirtualTanstack }: {
+export function StickyHeaderWrapper ({ children, className }: {
   children: React.ReactNode,
-  className: string,
-  isVirtualTanstack?: boolean
+  className: string
 }) {
   const portalRef = useRef<HTMLTableElement | null>(null)
   if (!portalRef.current) {
@@ -58,7 +56,6 @@ export function StickyHeaderWrapper ({ children, className, isVirtualTanstack }:
   }
   const theadRef = useRef<HTMLTableSectionElement>(null)
   const { columns, hasRowSelection } = useResizableColumnsContext()
-  const virtualTanstackColumnSlots = useStickyHeaderBodySync({ isVirtualTanstack, theadRef, portalRef, columns })
 
   useEffect(() => {
     if (portalRef.current && theadRef.current) {
@@ -79,10 +76,6 @@ export function StickyHeaderWrapper ({ children, className, isVirtualTanstack }:
   }, [])
 
   function renderColumnsWidthHelper (Tag: React.ElementType, classname: string) {
-    if (isVirtualTanstack && virtualTanstackColumnSlots) {
-      return renderVirtualTanstackColumnsWidthHelper(Tag, classname, virtualTanstackColumnSlots, columns)
-    }
-
     return (
       <>
         {hasRowSelection ? <Tag className={`ant-table-selection-${classname}`} /> : null}
@@ -112,7 +105,3 @@ export function StickyHeaderWrapper ({ children, className, isVirtualTanstack }:
     </thead>
   )
 }
-
-export const VirtualTanstackStickyHeaderWrapper = (props: { children: React.ReactNode, className: string }) => (
-  <StickyHeaderWrapper {...props} isVirtualTanstack />
-)
