@@ -10,7 +10,7 @@ import {
   TableCssProps
 } from '../../tableCss'
 import { findParentForClassName, isColumnVisible } from '../common'
-import { useStickyHeaderBodySync } from '../virtual'
+import { useStickyHeaderBodySync } from '../virtual/useStickyHeaderBodySync'
 
 import { useResizableColumnsContext } from './ResizableColumnsContext'
 

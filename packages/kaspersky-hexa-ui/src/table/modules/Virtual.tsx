@@ -20,7 +20,7 @@ import React, {
   useState
 } from 'react'
 
-import { VirtualTableContext } from '../helpers/virtual'
+import { VirtualTableContext } from '../helpers/virtual/VirtualTableContext'
 import { TableRecord } from '../types'
 
 import { TableComponent } from './index'
