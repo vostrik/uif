@@ -1,0 +1,82 @@
+import{r as u}from"./StoryComponents-CK7kJD3s.js";import{R as e,b as p,S as M}from"./iframe-CuxZtUxP.js";import{o as n}from"./Placeholder-CZpzyuK5.js";import{T as m}from"./ToggleButton-C3sc54Nb.js";import{T as O}from"./ToggleButtonGroup-BKvVw1XU.js";import{t as d,a as P}from"./types-CHQbqp6R.js";import{B as c}from"./Badge-ZSNeDhrE.js";import"./FormLabel-AJ1msRQ3.js";import"./preload-helper-Dp1pzeXC.js";import"./Tag-Dt4urbN1.js";import"./TextReducer-DDrjI2Ts.js";import"./index-BPmhZr6B.js";import"./omit-DXgDXInf.js";import"./type-GeDzSTZ4.js";import"./colors-DJ1jxL9H.js";import"./wave-DhdBo9LV.js";import"./Group-gZM6GuIE.js";import"./Divider-FNnXL9Gj.js";import"./generateId-BXJELych.js";import"./v4-BoP187Zn.js";import"./imaskDateOptionsGenerator-scsuuk1w.js";import"./input-BPkqxyzb.js";import"./index-Chjiymov.js";const ae={title:"Hexa UI Components/ToggleButton/Stories",component:m,tags:["!autodocs"],args:{text:"Toggle button",value:"toggle-button",iconBefore:e.createElement(n,null)}},r={args:{text:"Toggle button",value:"toggle-button"}},a={render:t=>u(P.map(o=>({label:o,content:e.createElement(m,{...t,mode:o,text:o})})))},l={render:t=>u(d.map(o=>({label:o,content:e.createElement(m,{...t,size:o,text:o})})))},s={render:t=>u(d.map(o=>({label:o,content:e.createElement(m,{...t,iconBefore:e.createElement(n,null),size:o,text:void 0,tooltip:"Tooltip text"})})))},W=t=>{const[o,w]=p.useState(t.value),I=p.useMemo(()=>t.items.map(g=>({...g,size:t.itemsSize||g.size||"medium"})),[t.items,t.itemsSize]);return e.createElement(M,{style:{width:"600px"},gap:"related"},e.createElement(O,{...t,items:I,value:o,onChange:w}))},i={name:"ToggleButtonGroup",render:W,args:{isStretch:!1,disabled:!1,loading:!1,itemsSize:"medium",testId:"toggle-button-group",value:["one"],items:[{text:"One",mode:"marina",iconBefore:e.createElement(n,null),value:"one"},{text:"Two",mode:"red",iconBefore:e.createElement(n,null),elementAfter:e.createElement(c,{count:1}),value:"two"},{text:"Three",mode:"orange",iconBefore:e.createElement(n,null),disabled:!0,value:"three"},{text:"Four",mode:"violet",elementAfter:e.createElement(c,{count:32}),value:"four"},{text:"long ".repeat(50),mode:"violet",elementAfter:e.createElement(c,{count:32}),value:"five"}]},argTypes:{isStretch:{control:"boolean"},disabled:{control:"boolean"},loading:{control:"boolean"},itemsSize:{options:d,control:{type:"select"}}},parameters:{controls:{include:["isStretch","disabled","loading","itemsSize"]}}};var f,B,b;r.parameters={...r.parameters,docs:{...(f=r.parameters)==null?void 0:f.docs,source:{originalSource:`{
+  args: {
+    text: 'Toggle button',
+    value: 'toggle-button'
+  }
+}`,...(b=(B=r.parameters)==null?void 0:B.docs)==null?void 0:b.source}}};var S,x,v;a.parameters={...a.parameters,docs:{...(S=a.parameters)==null?void 0:S.docs,source:{originalSource:`{
+  render: args => renderVariants(toggleButtonModes.map(mode => ({
+    label: mode,
+    content: <ToggleButtonComponent {...args} mode={mode} text={mode} />
+  })), true)
+}`,...(v=(x=a.parameters)==null?void 0:x.docs)==null?void 0:v.source}}};var z,T,h;l.parameters={...l.parameters,docs:{...(z=l.parameters)==null?void 0:z.docs,source:{originalSource:`{
+  render: args => renderVariants(toggleButtonSizes.map(size => ({
+    label: size,
+    content: <ToggleButtonComponent {...args} size={size} text={size} />
+  })), true)
+}`,...(h=(T=l.parameters)==null?void 0:T.docs)==null?void 0:h.source}}};var E,C,y;s.parameters={...s.parameters,docs:{...(E=s.parameters)==null?void 0:E.docs,source:{originalSource:`{
+  render: args => renderVariants(toggleButtonSizes.map(size => ({
+    label: size,
+    content: <ToggleButtonComponent {...args} iconBefore={<Placeholder />} size={size} text={undefined} tooltip="Tooltip text" />
+  })), true)
+}`,...(y=(C=s.parameters)==null?void 0:C.docs)==null?void 0:y.source}}};var G,A,V;i.parameters={...i.parameters,docs:{...(G=i.parameters)==null?void 0:G.docs,source:{originalSource:`{
+  name: 'ToggleButtonGroup',
+  render: ControllableToggleButtonGroup,
+  args: {
+    isStretch: false,
+    disabled: false,
+    loading: false,
+    itemsSize: 'medium',
+    testId: 'toggle-button-group',
+    value: ['one'],
+    items: [{
+      text: 'One',
+      mode: 'marina',
+      iconBefore: <Placeholder />,
+      value: 'one'
+    }, {
+      text: 'Two',
+      mode: 'red',
+      iconBefore: <Placeholder />,
+      elementAfter: <Badge count={1} />,
+      value: 'two'
+    }, {
+      text: 'Three',
+      mode: 'orange',
+      iconBefore: <Placeholder />,
+      disabled: true,
+      value: 'three'
+    }, {
+      text: 'Four',
+      mode: 'violet',
+      elementAfter: <Badge count={32} />,
+      value: 'four'
+    }, {
+      text: 'long '.repeat(50),
+      mode: 'violet',
+      elementAfter: <Badge count={32} />,
+      value: 'five'
+    }]
+  },
+  argTypes: {
+    isStretch: {
+      control: 'boolean'
+    },
+    disabled: {
+      control: 'boolean'
+    },
+    loading: {
+      control: 'boolean'
+    },
+    itemsSize: {
+      options: toggleButtonSizes,
+      control: {
+        type: 'select'
+      }
+    }
+  },
+  parameters: {
+    controls: {
+      include: ['isStretch', 'disabled', 'loading', 'itemsSize']
+    }
+  }
+}`,...(V=(A=i.parameters)==null?void 0:A.docs)==null?void 0:V.source}}};const le=["Basic","Mode","Size","IconOnly","ButtonGroupWithControls"];export{r as Basic,i as ButtonGroupWithControls,s as IconOnly,a as Mode,l as Size,le as __namedExportsOrder,ae as default};

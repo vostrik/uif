@@ -1,0 +1,94 @@
+import{M as I,R as r}from"./iframe-CuxZtUxP.js";import{w as O}from"./withMeta-BqFg98vY.js";import{S as U}from"./ScrollableContainer-CV4Wn0qG.js";import{a as $}from"./StoryComponents-CK7kJD3s.js";import{M as q}from"./meta-BaVU7Tcs.js";import{t as j}from"./Toolbar-C-uKPuMD.js";import{g as J,t as v}from"./filtersMockData-C46JUvfg.js";import{b as K,B as o}from"./_commonConstants-oQe7V3Zt.js";import{d as S,c as L,H as g}from"./HorizontalScroll-oyWbfM0d.js";import"./preload-helper-Dp1pzeXC.js";import"./DocPageLayout-laC5MAc2.js";import"./blocks-Cx5nhqUz.js";import"./index-DcTSngpd.js";import"./TextReducer-DDrjI2Ts.js";import"./SubComponents-DjSVH-Ma.js";import"./TextWithTruncation-DGkObJqj.js";import"./ArrowDownSolid-DT8risoU.js";import"./ArrowRightSolid-BD1ZcQ2R.js";import"./Divider-FNnXL9Gj.js";import"./Badge-ZSNeDhrE.js";import"./type-GeDzSTZ4.js";import"./colors-DJ1jxL9H.js";import"./Indicator-BDm4vtnD.js";import"./StatusOkOutline-MSqmg68d.js";import"./Grid-9ETswfwf.js";import"./Markdown-CULbeuuj.js";import"./index-DfhmDEte.js";import"./shouldForwardProp-Cdy-RLhZ.js";import"./FormLabel-AJ1msRQ3.js";import"./Tag-Dt4urbN1.js";import"./index-BPmhZr6B.js";import"./omit-DXgDXInf.js";import"./wave-DhdBo9LV.js";import"./Group-gZM6GuIE.js";import"./useImmutableRef-y4XULOwd.js";import"./useIntersectionChildren-Cq2zUo8-.js";import"./Dropdown-y0CDWPOg.js";import"./KeyCode-c5NdJp32.js";import"./isEqual-BjiJJFtM.js";import"./useMergedState-P4F0ljFz.js";import"./focus-D0ElrM-1.js";import"./Toggle-DNd7EzHq.js";import"./AdditionalContent-CJrFhZE7.js";import"./HelpMessage-vJ8j-KE6.js";import"./ArrowRight-DuajFAMc.js";import"./Loader-gIIFbDBw.js";import"./index-BYpoxBYL.js";import"./v4-BoP187Zn.js";import"./Menu2-BxyRMUNi.js";import"./Settings21-AlnDAUyS.js";import"./Button-CL-Qr1l3.js";import"./button-DiQn-Imx.js";import"./IconResolver-C_QNjFLL.js";import"./Placeholder-CZpzyuK5.js";import"./useTranslation-CK04u0KU.js";import"./ToggleButton-C3sc54Nb.js";import"./generateId-BXJELych.js";import"./imaskDateOptionsGenerator-scsuuk1w.js";import"./input-BPkqxyzb.js";import"./index-Chjiymov.js";import"./IconSearch-BpVxUzQS.js";import"./Table-Bf1n6Y8r.js";import"./pickAttrs-ngGqSzBU.js";import"./addEventListener-DLuhf4PV.js";import"./Pagination-6_5fjUKI.js";import"./RightOutlined-Cyb_x7VK.js";import"./index-BRVkNmfg.js";import"./Portal-D7c67ae8.js";import"./regeneratorRuntime-B1uYfXsH.js";import"./List-CSzGcTW1.js";import"./iconUtil-Jz-rM0MW.js";import"./SearchOutlined-C23ph8ww.js";import"./useForceUpdate-Ep1uJ0oE.js";import"./Tree-Dz4HfPlh.js";import"./index-BttC3HIA.js";import"./index-Dfjq1KcL.js";import"./EllipsisOutlined-CjvEwC7v.js";import"./Sider-DYHmZZgg.js";import"./index-BT_P0ngG.js";import"./_getTag-C7LEWoxE.js";import"./index-WcvzS2Hd.js";import"./scrollTo-BbT9MTuj.js";import"./Card-B2HYSOcA.js";import"./Delete-DUx4Zy1Z.js";import"./useThemedScrollbar-Dwu4CEFm.js";import"./scrollbarCss-DPzqmmqy.js";import"./Radio-S19TPsl6.js";import"./useId-D3DcsVr-.js";import"./Checkbox-GN_6Gck8.js";import"./InputNumber-D6vE5QAB.js";import"./useThemedTextbox-30gzApTL.js";import"./typesHelpers-tpz7Of7L.js";import"./useClassNamedTextbox-DdNl3Yg2.js";import"./Pagination-BlAl42PK.js";import"./Select-DzKM5TvG.js";import"./useGlobalStyles-Db1QJWsp.js";import"./ExpandableText-4lCnJ_tN.js";import"./Chip-DoqjYbSs.js";import"./Reload-Bo4cKsdL.js";import"./Search-lCX0qkfE.js";import"./Textbox-CxoGGP_s.js";import"./InputMasked-CsxMnSBJ.js";import"./InputPassword-B-4kxudl.js";import"./StatusOkSolid-BjnZPyJU.js";import"./Sidebar-Dt-TWZNU.js";import"./PortalWrapper-IotRF9Lw.js";import"./Modal-slypoold.js";import"./Tabs-Byu9CrFP.js";import"./i18n-Bqc3f8rN.js";import"./Field-q7fnv5i-.js";import"./Help-Btfn5GjZ.js";import"./CrossM-BPIIC2-V.js";import"./RangePicker-oo0y0JXI.js";import"./RangeSeparator-BtRi3lGB.js";import"./WithGlobalStyles-DaUbsGao.js";import"./dateFns-Zy9WemBJ.js";import"./useThemedPicker-CcxlCp-K.js";import"./ArrowRightMini-CUVSZH0v.js";import"./Calendar-DgOF-Wz6.js";import"./SegmentedButton-zJ9XuWNF.js";import"./Plus-DVH76x0m.js";import"./StatusWarningSolid-Cx1sPTMm.js";import"./table-mock-data-xqQIdBtx.js";const pt={title:"Hexa UI Components/Table/Sticky",component:j,args:{pagination:{pageSize:200},columns:v,dataSource:J},argTypes:{stickyHeader:K},parameters:{badges:[I.stable],docs:{page:O(q)},controls:{exclude:["pagination","dataSource","columns"]}},tags:["!autodocs"]},e=[{type:"button",key:"1",label:"Tool 1",onClick:()=>console.log("Tool 1")},{type:"button",key:"2",label:"Tool 2",onClick:()=>console.log("Tool 2")},{type:"dropdown",key:"4",label:"Tool 4",overlay:[{children:"item 1"},{children:"item 2"}]}],a={...g,name:"Sticky Selection",render:t=>{const[d,l]=r.useState(S);return r.createElement(o,{...t,onDragStart:(...u)=>{console.log(u)},onDragEnd:u=>{l(u)},dataSource:d})},args:{...g.args,columns:L,dataSource:S,stickySelection:!0}},i={render:o.bind({}),args:{stickyHeader:0}},n={render:o.bind({}),args:{stickyHeader:void 0,toolbar:{sticky:0,left:e}}},s={render:o.bind({}),args:{stickyFooter:!0,toolbar:{left:e,showColumns:!0,showGrouping:!0,showSettingsSearch:!0}}},m={render:o.bind({}),args:{columns:v.map(t=>({...t,width:200})),stickyFooter:!0,resizingMode:"scroll",toolbar:{left:e,showColumns:!0,showGrouping:!0,showSettingsSearch:!0},stickySelection:!1}},p={render:o.bind({}),args:{stickyFooter:!0,stickyHeader:40,toolbar:{sticky:0,left:e,showColumns:!0,showGrouping:!0,showSettingsSearch:!0}}},c={render:t=>r.createElement($,null,r.createElement(U,null,r.createElement(j,{...t}),r.createElement("ul",null,Array.from({length:100},(d,l)=>r.createElement("li",{key:l},"just to make page longer"))))),args:{pagination:{pageSize:20},stickyHeader:40,toolbar:{sticky:0,left:e}}};var y,b,k;a.parameters={...a.parameters,docs:{...(y=a.parameters)==null?void 0:y.docs,source:{originalSource:`{
+  ...HorizontalScrollStory,
+  name: 'Sticky Selection',
+  render: args => {
+    const [dataSource, setDataSource] = React.useState(horizontalScrollDataSource);
+    return <BasicTableStory {...args} onDragStart={(...arg) => {
+      console.log(arg);
+    }} onDragEnd={(rows: any) => {
+      setDataSource(rows);
+    }} dataSource={dataSource} />;
+  },
+  args: {
+    ...HorizontalScrollStory.args,
+    columns: horizontalScrollColumns as TableColumn[],
+    dataSource: horizontalScrollDataSource,
+    stickySelection: true
+  }
+}`,...(k=(b=a.parameters)==null?void 0:b.docs)==null?void 0:k.source}}};var h,T,f;i.parameters={...i.parameters,docs:{...(h=i.parameters)==null?void 0:h.docs,source:{originalSource:`{
+  render: BasicTableStory.bind({}),
+  args: {
+    stickyHeader: 0
+  }
+}`,...(f=(T=i.parameters)==null?void 0:T.docs)==null?void 0:f.source}}};var w,C,H;n.parameters={...n.parameters,docs:{...(w=n.parameters)==null?void 0:w.docs,source:{originalSource:`{
+  render: BasicTableStory.bind({}),
+  args: {
+    stickyHeader: undefined,
+    toolbar: {
+      sticky: 0,
+      left: itemsToolbar
+    }
+  }
+}`,...(H=(C=n.parameters)==null?void 0:C.docs)==null?void 0:H.source}}};var F,z,D;s.parameters={...s.parameters,docs:{...(F=s.parameters)==null?void 0:F.docs,source:{originalSource:`{
+  render: BasicTableStory.bind({}),
+  args: {
+    stickyFooter: true,
+    toolbar: {
+      left: itemsToolbar,
+      showColumns: true,
+      showGrouping: true,
+      showSettingsSearch: true
+    }
+  }
+}`,...(D=(z=s.parameters)==null?void 0:z.docs)==null?void 0:D.source}}};var E,B,M;m.parameters={...m.parameters,docs:{...(E=m.parameters)==null?void 0:E.docs,source:{originalSource:`{
+  render: BasicTableStory.bind({}),
+  args: {
+    columns: tableColumns.map(col => ({
+      ...col,
+      width: 200
+    })),
+    stickyFooter: true,
+    resizingMode: 'scroll',
+    toolbar: {
+      left: itemsToolbar,
+      showColumns: true,
+      showGrouping: true,
+      showSettingsSearch: true
+    },
+    stickySelection: false
+  }
+}`,...(M=(B=m.parameters)==null?void 0:B.docs)==null?void 0:M.source}}};var W,x,G;p.parameters={...p.parameters,docs:{...(W=p.parameters)==null?void 0:W.docs,source:{originalSource:`{
+  render: BasicTableStory.bind({}),
+  args: {
+    stickyFooter: true,
+    stickyHeader: 40,
+    toolbar: {
+      sticky: 0,
+      left: itemsToolbar,
+      showColumns: true,
+      showGrouping: true,
+      showSettingsSearch: true
+    }
+  }
+}`,...(G=(x=p.parameters)==null?void 0:x.docs)==null?void 0:G.source}}};var A,_,R;c.parameters={...c.parameters,docs:{...(A=c.parameters)==null?void 0:A.docs,source:{originalSource:`{
+  render: args => <StoryColumn>
+      <ScrollableContainer>
+        <Table {...args} />
+        <ul>
+          {Array.from({
+          length: 100
+        }, (_, index) => <li key={index}>just to make page longer</li>)}
+        </ul>
+      </ScrollableContainer>
+    </StoryColumn>,
+  args: {
+    pagination: {
+      pageSize: 20
+    },
+    stickyHeader: 40,
+    toolbar: {
+      sticky: 0,
+      left: itemsToolbar
+    }
+  }
+}`,...(R=(_=c.parameters)==null?void 0:_.docs)==null?void 0:R.source}}};const ct=["StickySelection","StickyHeader","StickyToolbar","StickyFooter","StickyFooterWithScroll","StickyHeaderWithToolbarAndFooter","WithinScrollableContainer"];export{s as StickyFooter,m as StickyFooterWithScroll,i as StickyHeader,p as StickyHeaderWithToolbarAndFooter,a as StickySelection,n as StickyToolbar,c as WithinScrollableContainer,ct as __namedExportsOrder,pt as default};

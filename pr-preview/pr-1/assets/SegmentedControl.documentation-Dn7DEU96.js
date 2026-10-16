@@ -1,0 +1,71 @@
+import{j as t,M as a,D as s}from"./blocks-Cx5nhqUz.js";import{useMDXComponents as d}from"./index-BViJFuKJ.js";import{D as c}from"./DocPageLayout-laC5MAc2.js";import{D as o,a as i,A as l}from"./AutodocArgsTable-BwGDJhyX.js";import{C as x}from"./ComponentChangelog-Eg2gHJr8.js";import{D as b}from"./DocPageHeader-CG8zhOnY.js";import{S as u}from"./SegmentedControl-C-QzYW6n.js";import{S as p}from"./SegmentedControl.stories-DrhY3pSX.js";import"./preload-helper-Dp1pzeXC.js";import"./iframe-CuxZtUxP.js";import"./index-DcTSngpd.js";import"./TextReducer-DDrjI2Ts.js";import"./SubComponents-DjSVH-Ma.js";import"./TextWithTruncation-DGkObJqj.js";import"./ArrowDownSolid-DT8risoU.js";import"./ArrowRightSolid-BD1ZcQ2R.js";import"./Divider-FNnXL9Gj.js";import"./Badge-ZSNeDhrE.js";import"./type-GeDzSTZ4.js";import"./colors-DJ1jxL9H.js";import"./Indicator-BDm4vtnD.js";import"./Tabs-Byu9CrFP.js";import"./i18n-Bqc3f8rN.js";import"./shouldForwardProp-Cdy-RLhZ.js";import"./FormLabel-AJ1msRQ3.js";import"./Tag-Dt4urbN1.js";import"./index-BPmhZr6B.js";import"./omit-DXgDXInf.js";import"./wave-DhdBo9LV.js";import"./Group-gZM6GuIE.js";import"./useMergedState-P4F0ljFz.js";import"./KeyCode-c5NdJp32.js";import"./isEqual-BjiJJFtM.js";import"./index-BRVkNmfg.js";import"./addEventListener-DLuhf4PV.js";import"./Portal-D7c67ae8.js";import"./regeneratorRuntime-B1uYfXsH.js";import"./focus-D0ElrM-1.js";import"./EllipsisOutlined-CjvEwC7v.js";import"./useIntersectionChildren-Cq2zUo8-.js";import"./Button-CL-Qr1l3.js";import"./Dropdown-y0CDWPOg.js";import"./Toggle-DNd7EzHq.js";import"./AdditionalContent-CJrFhZE7.js";import"./HelpMessage-vJ8j-KE6.js";import"./ArrowRight-DuajFAMc.js";import"./Loader-gIIFbDBw.js";import"./index-BYpoxBYL.js";import"./v4-BoP187Zn.js";import"./button-DiQn-Imx.js";import"./useTranslation-CK04u0KU.js";import"./generateId-BXJELych.js";import"./Advertisement-DNiGhx31.js";import"./Thread-CBQYxETQ.js";import"./index-BhXVkt3b.js";import"./ResizeInput-5cJEPiP8.js";import"./ToggleButton-C3sc54Nb.js";import"./imaskDateOptionsGenerator-scsuuk1w.js";import"./input-BPkqxyzb.js";import"./index-Chjiymov.js";import"./Field-q7fnv5i-.js";import"./Help-Btfn5GjZ.js";import"./Markdown-CULbeuuj.js";import"./index-DfhmDEte.js";import"./Textbox-CxoGGP_s.js";import"./useGlobalStyles-Db1QJWsp.js";import"./InputMasked-CsxMnSBJ.js";import"./useThemedTextbox-30gzApTL.js";import"./typesHelpers-tpz7Of7L.js";import"./useClassNamedTextbox-DdNl3Yg2.js";import"./InputNumber-D6vE5QAB.js";import"./index-WcvzS2Hd.js";import"./SearchOutlined-C23ph8ww.js";import"./InputPassword-B-4kxudl.js";import"./StatusOkSolid-BjnZPyJU.js";import"./IconResolver-C_QNjFLL.js";import"./Placeholder-CZpzyuK5.js";import"./ServicesNav-CsxKIWzY.js";import"./ArrowRightMini-CUVSZH0v.js";import"./ArrowDown-C2WzrLzc.js";import"./Toolbar-C-uKPuMD.js";import"./useImmutableRef-y4XULOwd.js";import"./Menu2-BxyRMUNi.js";import"./Settings21-AlnDAUyS.js";import"./IconSearch-BpVxUzQS.js";import"./Table-Bf1n6Y8r.js";import"./pickAttrs-ngGqSzBU.js";import"./Pagination-6_5fjUKI.js";import"./RightOutlined-Cyb_x7VK.js";import"./List-CSzGcTW1.js";import"./iconUtil-Jz-rM0MW.js";import"./useForceUpdate-Ep1uJ0oE.js";import"./Tree-Dz4HfPlh.js";import"./index-BttC3HIA.js";import"./index-Dfjq1KcL.js";import"./Sider-DYHmZZgg.js";import"./index-BT_P0ngG.js";import"./_getTag-C7LEWoxE.js";import"./scrollTo-BbT9MTuj.js";import"./Card-B2HYSOcA.js";import"./Delete-DUx4Zy1Z.js";import"./useThemedScrollbar-Dwu4CEFm.js";import"./scrollbarCss-DPzqmmqy.js";import"./Radio-S19TPsl6.js";import"./useId-D3DcsVr-.js";import"./Checkbox-GN_6Gck8.js";import"./Pagination-BlAl42PK.js";import"./Select-DzKM5TvG.js";import"./ExpandableText-4lCnJ_tN.js";import"./Chip-DoqjYbSs.js";import"./Reload-Bo4cKsdL.js";import"./Search-lCX0qkfE.js";import"./Sidebar-Dt-TWZNU.js";import"./PortalWrapper-IotRF9Lw.js";import"./Modal-slypoold.js";import"./StatusOkOutline-MSqmg68d.js";import"./CrossM-BPIIC2-V.js";import"./RangePicker-oo0y0JXI.js";import"./RangeSeparator-BtRi3lGB.js";import"./WithGlobalStyles-DaUbsGao.js";import"./dateFns-Zy9WemBJ.js";import"./useThemedPicker-CcxlCp-K.js";import"./Calendar-DgOF-Wz6.js";import"./Grid-9ETswfwf.js";import"./SegmentedButton-zJ9XuWNF.js";import"./Plus-DVH76x0m.js";import"./StatusWarningSolid-Cx1sPTMm.js";import"./ArrowRightSmall-BQDC8-5_.js";import"./Browser-7JxCJYk-.js";import"./Expand-CHRRs3-c.js";import"./Bell-CmXaF5_D.js";import"./CodeCompare-CzJQrjzn.js";import"./SettingsGear-Cz5yH-5S.js";import"./ExpandAll-B9ZnK9-f.js";import"./CheckPoint-t6tesQoj.js";import"./TreeNav-LK2AWiuF.js";import"./Tree-DiWPncuy.js";import"./Copy-B3WL8Fge.js";import"./Download2-CwhjCmDc.js";import"./Edit-fFKMLMXD.js";import"./StatusLevelMedium-BD2sai-3.js";import"./EngineeringStation-D3zDy0Fy.js";import"./FileItem-D9tJHdWZ.js";import"./Heart-Cd8SOAAa.js";import"./Servers-BXykaQba.js";import"./NotificationService-iZxdfsLx.js";import"./Wrap-D8CViFPN.js";import"./LockGroup-DlQcIvqj.js";import"./Menu3-DK6cPWTS.js";import"./Minus-BZ62kiZO.js";import"./Moon-j-Wezmup.js";import"./LicenseCard-CcoFBoqN.js";import"./Status-BArBpSxk.js";import"./ProgressBar-yfS01aUZ.js";import"./Menu-DenLpCKS.js";import"./Submenu-DvihlGY3.js";import"./PlusM-CRhTN_PO.js";import"./Printer-NKV0ytYi.js";import"./Server-CPV0dxAF.js";import"./Settings-axeGZITJ.js";import"./TopNavigation-CljHN_Xf.js";import"./UserAccount-a-_M6lL0.js";import"./HorizontalNav-DTxsdGI_.js";import"./Youtube-BGkIYag0.js";import"./AccordionPanel-DGDFDlvK.js";import"./Upload-DbNH33gC.js";import"./UserGroup-DgErpYy0.js";import"./index-C-Vciu0k.js";import"./ToggleButtonGroup-BKvVw1XU.js";import"./Uploader-JkIVHO03.js";import"./CodeViewer-CrrOjbGD.js";import"./StatusWarningSolid-DHw2_56U.js";import"./TimeInput-whaZTOos.js";import"./TagReductionGroup-CvJdj5mX.js";import"./Alert-pxYwFk3K.js";import"./Anchor-BKliAIxZ.js";import"./Breadcrumbs-QrK9zwnR.js";import"./DetailsPage-B6kA3_VH.js";import"./FormTrigger-ESeAj39t.js";import"./Gallery-CECZ1RaZ.js";import"./Scrollbar-BMZnij89.js";import"./KeyValue-D1vyG2Cn.js";import"./InformationCard-DyLxP-5P.js";import"./Label-DAXnIVWP.js";import"./LoadingOverlay-CFwlCaGI.js";import"./Notification-DyxcF-gq.js";import"./PageHeader-C7Qye1qH.js";import"./Panel-CbUgwczo.js";import"./Placeholder-ItGX073A.js";import"./QuickFilter-BYm00B-5.js";import"./RangeTimeInput-Cvj7uD6Q.js";import"./Repeater-DtaGGWC5.js";import"./Severity-CgAk7byi.js";import"./Skeleton-D_Gh_i6G.js";import"./StatusCard-BHMj0-5u.js";import"./StatusOkSolid-Cqt23_Jk.js";import"./TenantFilter-Bk7HQOld.js";import"./basic-data-transfer.addon-t0_upLkQ.js";import"./TextDiff-C68ssR9E.js";import"./TreeSelect-Css30GRy.js";import"./WeeklySchedule-DXqVH5s8.js";import"./Wizard-uihOd1y5.js";import"./types-D1pYS17c.js";import"./types-CHQbqp6R.js";import"./propPresentation-CPSL2Fd9.js";import"./index-Ca4hvua7.js";import"./withMeta-BqFg98vY.js";import"./resolveDesignControls-CFhBuB_d.js";function e(r){return o||n("Tabs",!1),o.TabPane||n("Tabs.TabPane",!0),t.jsxs(t.Fragment,{children:[t.jsx(a,{of:p,name:"SegmentedControl Docs"}),`
+`,t.jsxs(c,{children:[t.jsx(b,{title:"SegmentedControl"}),t.jsxs(o,{defaultActiveKey:"description",children:[t.jsx(o.TabPane,{tab:"Описание",children:t.jsx(i,{description:`
+**SegmentedControl** — набор вкладок для переключения между связанными представлениями
+
+**SegmentedControl** применяют для переключения между небольшим числом связанных представлений в одном контексте: например, для предфильтров или разных представлений одной формы. Все варианты должны быть доступны одновременно и иметь короткие, различимые подписи.
+
+Для навигации между независимыми разделами приложения выбирайте **Tabs**, а для выбора значения без смены содержимого — **SegmentedButton**.`})},"description"),t.jsxs(o.TabPane,{tab:"Структура",children:[t.jsx(i,{description:"**SegmentedControl** отображает связанные разделы в виде горизонтальной панели вкладок и показывает содержимое активной вкладки. Состав вкладок задаётся через **tabsData**, а соответствующее содержимое — через **contentData**."}),t.jsx(i,{title:"tabsData",description:"Обязательный проп. Массив объектов вкладок. Для переключения вкладка использует **name** как идентификатор и **content** как ключ содержимого; **text** отображается на кнопке вкладки.",code:`
+        <SegmentedControl
+          tabsData={[
+            { name: 'summary', content: 'summary', text: 'Сводка' },
+            { name: 'details', content: 'details', text: 'Подробнее' },
+          ]}
+          contentData={{
+            summary: () => <div>Сводка</div>,
+            details: () => <div>Подробности</div>,
+          }}
+        />
+      `}),t.jsx(i,{title:"contentData",description:"Обязательный проп. Объект с функциями рендеринга содержимого. Ключ должен совпадать со значением **content** соответствующей вкладки; функции получают объект **properties**, заданный у вкладки.",code:`
+        <SegmentedControl
+          tabsData={[
+            {
+              name: 'users',
+              content: 'users',
+              text: 'Пользователи',
+              properties: { total: 12 },
+            },
+          ]}
+          contentData={{ users: ({ total }) => <div>Пользователей: {total}</div> }}
+        />
+      `}),t.jsx(i,{title:"size",description:"Размер панели и её вкладок. Доступные значения: `small`, `medium`, `large`. По умолчанию — `medium`.",code:`
+        <SegmentedControl
+          size="large"
+          tabsData={[
+            { name: 'one', content: 'one', text: 'Первый' },
+            { name: 'two', content: 'two', text: 'Второй' },
+          ]}
+          contentData={{
+            one: () => <div>Первое содержимое</div>,
+            two: () => <div>Второе содержимое</div>,
+          }}
+        />
+      `}),t.jsx(i,{title:"defaultActiveTab",description:"Имя вкладки, которая отображается активной при первом рендере. Если проп не задан, активной становится первая вкладка из **tabsData**.",code:`
+        <SegmentedControl
+          defaultActiveTab="details"
+          tabsData={[
+            { name: 'summary', content: 'summary', text: 'Сводка' },
+            { name: 'details', content: 'details', text: 'Подробнее' },
+          ]}
+          contentData={{
+            summary: () => <div>Сводка</div>,
+            details: () => <div>Подробности</div>,
+          }}
+        />
+      `}),t.jsx(i,{title:"Элементы вкладок",description:"Объекты в **tabsData** поддерживают иконку **iconBefore**, подсказку **infoTooltip**, индикатор **indicator**, счётчик **counter**, состояние **disabled** и обработчик **onClick**.",code:`
+        <SegmentedControl
+          tabsData={[
+            {
+              name: 'inbox',
+              content: 'inbox',
+              text: 'Входящие',
+              counter: { number: 3, mode: 'neutral_transparent' },
+              onClick: () => alert('Открыты входящие'),
+            },
+            { name: 'archive', content: 'archive', text: 'Архив', disabled: true },
+          ]}
+          contentData={{
+            inbox: () => <div>Входящие</div>,
+            archive: () => <div>Архив</div>,
+          }}
+        />
+      `})]},"composition"),t.jsxs(o.TabPane,{tab:"Properties",children:[t.jsx(s,{of:p}),t.jsx(l,{components:u})]},"properties"),t.jsx(o.TabPane,{tab:"Дизайн",children:t.jsx(i,{title:"Компонент в Pixso",titleSize:"H5",description:""})},"design"),t.jsx(o.TabPane,{tab:"Изменения",children:t.jsx(x,{component:"SegmentedControl"})},"changelog")]})]})]})}function sr(r={}){const{wrapper:m}={...d(),...r.components};return m?t.jsx(m,{...r,children:t.jsx(e,{...r})}):e()}function n(r,m){throw new Error("Expected "+(m?"component":"object")+" `"+r+"` to be defined: you likely forgot to import, pass, or provide it.")}export{sr as default};
