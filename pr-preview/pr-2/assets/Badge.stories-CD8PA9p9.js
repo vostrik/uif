@@ -1,0 +1,12 @@
+import{M as t,R as u}from"./iframe-kzbRZKTh.js";import{e as l,g as m,c as b}from"./propPresentation-zJAskzS2.js";import{w as f}from"./withMeta-D4lXFYrc.js";import{b as d,a as y,B as i}from"./Badge-mOFGdbE6.js";import{s as S}from"./resolveDesignControls-CFhBuB_d.js";const P={designTokens:!0,useThemedHook:!0,unitTests:!0,screenshotTests:!1,migration:!0,apiTable:!0,storybook:!0,pixsoView:!0},x="Badge",B="В качестве основы используется AntdBadge из библиотеки Antd.",w="Компонент Badge предназначен для компактного отображения дополнительной информации, выступая либо в роли счетчика (показывает количество элементов, например, уведомлений), либо текстовой метки.",C="",T="",r={dod:P,component:x,description:B,usage:w,designLink:C,pixsoView:T},h=(o,p={})=>l(S[o],p),c={mode:h("mode",{options:[...d],defaultValue:"neutral"}),size:{group:"appearance",description:"Размер badge. Размер large поддерживается только для transparent-вариантов.",control:"select",options:[...y],defaultValue:"large"},count:{group:"appearance",description:"Отображаемое число",control:"number"},text:{group:"appearance",description:"Текст вместо числа",control:"text"},overflowCount:{group:"appearance",description:"Максимальное число, которое отображается без префикса +",control:"number"},showZero:{group:"appearance",description:"Показывать badge при count=0",control:"boolean",defaultValue:"false"}},M=m(c),g={argTypes:b(c),args:{overflowCount:99,count:1,size:"medium",mode:"neutral",text:"",showZero:!1,testId:"badge-test-id",klId:"badge-kl-id"},parameters:{badges:[t.stable,t.reviewedByDesign],docs:{page:f(r)},design:r.pixsoView}},k={title:"Hexa UI Components/Badge",component:i,tags:["!autodocs"],includeStories:["Playground"],excludeStories:["badgeStorySettings","badgeModes"],...g},e={name:"Playground",parameters:{controls:{include:M,sort:"none"}},render:o=>u.createElement(i,{...o})};var a,n,s;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:`{
+  name: 'Playground',
+  parameters: {
+    controls: {
+      include: badgeControlsOrder,
+      sort: 'none'
+    }
+  },
+  render: (args: BadgeProps) => {
+    return <BadgeComponent {...args} />;
+  }
+}`,...(s=(n=e.parameters)==null?void 0:n.docs)==null?void 0:s.source}}};const V=["badgeModes","badgeStorySettings","Playground"],A=Object.freeze(Object.defineProperty({__proto__:null,Playground:e,__namedExportsOrder:V,badgeModes:d,badgeStorySettings:g,default:k},Symbol.toStringTag,{value:"Module"}));export{A as B,g as b};
