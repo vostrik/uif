@@ -1,6 +1,7 @@
 import { expect, Page, test } from '@playwright/test'
 
 const VIRTUAL_STORY = 'hexa-ui-components-table-dev-virtual--virtual-sticky-header-40-k'
+const SCROLL_Y_STORY = 'hexa-ui-components-table-dev-virtual--virtual-scroll-y'
 const STICKY_STORY = 'hexa-ui-components-table-sticky--sticky-header'
 
 const HEADER_CELLS = '.hexa-ui-table-sticky-header .ant-table > table > thead.ant-table-thead > tr > th'
@@ -82,6 +83,34 @@ test.describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
 
     await expect(page.locator('tr.ant-table-expanded-row')).toHaveCount(1)
     await expect(page.locator('tr.ant-table-expanded-row')).toContainText('Details of Device-3')
+  })
+})
+
+test.describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK with scroll.y', () => {
+  /** Keys of the body rows visible inside the scroll.y container */
+  const getVisibleRowKeys = (page: Page) => page.evaluate(() => {
+    const container = document.querySelector('.ant-table-body')!.getBoundingClientRect()
+    return Array.from(document.querySelectorAll('.ant-table-body tbody tr[data-row-key]'))
+      .filter(row => {
+        const rect = row.getBoundingClientRect()
+        return rect.bottom > container.top + 1 && rect.top < container.bottom - 1
+      })
+      .map(row => row.getAttribute('data-row-key'))
+  })
+
+  test('few tall rows: scrolling the container to the end shows the last rows', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 })
+    await openStory(page, SCROLL_Y_STORY)
+    const container = page.locator('.ant-table-body')
+
+    // the container scrolls only after the real row heights are measured
+    await expect.poll(() => container.evaluate(node => node.scrollHeight > node.clientHeight)).toBe(true)
+
+    await expect.poll(async () => {
+      await container.evaluate(node => { node.scrollTop = node.scrollHeight })
+      return getVisibleRowKeys(page)
+    }).toContain('27')
+    expect((await getVisibleRowKeys(page)).length).toBeGreaterThan(1)
   })
 })
 

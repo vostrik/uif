@@ -345,3 +345,20 @@ export const VirtualStickyHeader40k: Story = {
     )
   }
 }
+
+// scroll.y with a few tall rows: the body starts to scroll only after real row heights replace the estimated ones
+export const VirtualScrollY: Story = {
+  name: 'Virtual, scroll.y, few tall rows',
+  render: (args: ITableProps) => (
+    <Wrapper>
+      <Table<VirtualRow>
+        {...(args as ITableProps<VirtualRow>)}
+        __EXPERIMENTAL__VIRTUAL_TANSTACK
+        pagination={false}
+        scroll={{ y: 1200 }}
+        dataSource={virtualData.slice(0, 28)}
+        columns={virtualColumns}
+      />
+    </Wrapper>
+  )
+}
