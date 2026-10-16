@@ -205,7 +205,7 @@ export const Fetch: Story = {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-// `virtual` prop: 40 000 rows of any height, sticky header and all the table features
+// `__EXPERIMENTAL__VIRTUAL_TANSTACK` prop: 40 000 rows of any height, sticky header and all the table features
 // ---------------------------------------------------------------------------------------------------------------------
 
 const ROWS_COUNT = 40_000
@@ -328,7 +328,7 @@ export const VirtualStickyHeader40k: Story = {
         <StyledText>Selected: {selected.length}</StyledText>
         <Table<VirtualRow>
           {...(args as ITableProps<VirtualRow>)}
-          virtual
+          __EXPERIMENTAL__VIRTUAL_TANSTACK
           stickyHeader={40}
           pagination={false}
           toolbar={toolbar as ITableProps<VirtualRow>['toolbar']}

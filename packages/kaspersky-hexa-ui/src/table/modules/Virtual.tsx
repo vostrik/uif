@@ -192,8 +192,8 @@ const createVirtualBody = (BaseWrapper: ElementType) =>
 
 export const Virtual = <T extends TableRecord = TableRecord>(
   Component: TableComponent<T>
-): TableComponent<T> => function VirtualModule ({ virtual, __EXPERIMENTAL__VIRTUAL, ...props }) {
-  const isVirtual = Boolean(virtual ?? __EXPERIMENTAL__VIRTUAL)
+): TableComponent<T> => function VirtualModule ({ __EXPERIMENTAL__VIRTUAL_TANSTACK, __EXPERIMENTAL__VIRTUAL, ...props }) {
+  const isVirtual = Boolean(__EXPERIMENTAL__VIRTUAL_TANSTACK ?? __EXPERIMENTAL__VIRTUAL)
 
   const components = useMemo(() => {
     const body = props.components?.body
