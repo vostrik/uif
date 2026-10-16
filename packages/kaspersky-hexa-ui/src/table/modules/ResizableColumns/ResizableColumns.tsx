@@ -2,6 +2,7 @@ import { useUpdateEffect } from '@helpers/useUpdateEffect'
 import React, {
   MouseEventHandler,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -13,6 +14,7 @@ import { ITableProps, TableColumn, TableRecord } from '../..'
 import { isColumnReadonly, isColumnVisible } from '../../helpers/common'
 import { getPersistentStorageValue, updatePersistentStorage } from '../../helpers/persistentStorage'
 import { ResizableColumnsContext, STICKY_HEADER_CLASS, StickyHeaderWrapper } from '../../helpers/stickyHeader'
+import { VirtualTableContext } from '../../helpers/virtual'
 import { ResizableHeaderCellProps, SetColumns } from './types'
 
 import { addWidthFromStorage, applyResizingMode, selectAutoResizingMode, resizeColumns } from './helpers'
@@ -264,6 +266,7 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
   }, [props.columns])
 
   const hasRowSelection = !!props.rowSelection
+  const isVirtual = useContext(VirtualTableContext)
 
   /**
    * StickyHeader реализован через вынос thead в отдельную таблицу, потому что браузеры не умеют держать общий
@@ -277,7 +280,8 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
    */
   useUpdateEffect(() => {
     let interval: any
-    if (props.stickyHeader !== undefined && isTableVisible) {
+    // with virtualization the sticky header copies body column widths itself (useStickyHeaderBodySync)
+    if (props.stickyHeader !== undefined && isTableVisible && !isVirtual) {
       interval = setInterval(() => {
         const tableWrapper = siblingRef.current!.parentNode!
         const colgroupColumns = tableWrapper.querySelectorAll('.table-scrolling-wrapper colgroup col')
@@ -294,20 +298,16 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
               return acc
             }, [])
             let index = 0
-            stickyHeaderColumns.forEach((stickyHeaderColumn, domIndex) => {
-              const { classList } = stickyHeaderColumn
-              // service columns (selection, expand) are not in `columns`
-              if (classList.contains('ant-table-selection-column') || classList.contains('ant-table-row-expand-icon-cell')) {
-                return
+            stickyHeaderColumns.forEach(stickyHeaderColumn => {
+              if (!stickyHeaderColumn.classList.contains('ant-table-selection-column')) {
+                const width = stickyHeaderColumn.getBoundingClientRect().width
+                const key = hasRowSelection ? index + 1 : index
+                const position = visiblePositions[index]
+                if (position !== undefined && colgroupColumns[key]?.clientWidth !== width) {
+                  next[position] = { ...next[position], width }
+                }
+                index++
               }
-              const width = stickyHeaderColumn.getBoundingClientRect().width
-              const position = visiblePositions[index]
-              // header and body tables have the same column structure, so the <th> index is the <col> index
-              const bodyWidth = colgroupColumns[domIndex]?.getBoundingClientRect().width
-              if (position !== undefined && (bodyWidth === undefined || Math.abs(bodyWidth - width) > 0.5)) {
-                next[position] = { ...next[position], width }
-              }
-              index++
             })
 
             return next
@@ -316,7 +316,7 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
       }, 150)
     }
     return () => interval && clearInterval(interval)
-  }, [props.stickyHeader, props.dataSource, hasRowSelection, isTableVisible, props.columns])
+  }, [props.stickyHeader, props.dataSource, hasRowSelection, isTableVisible, props.columns, isVirtual])
 
   useEffect(() => {
     setColumns((prevState) => {

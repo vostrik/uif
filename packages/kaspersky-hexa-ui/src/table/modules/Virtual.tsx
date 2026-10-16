@@ -20,6 +20,7 @@ import React, {
   useState
 } from 'react'
 
+import { VirtualTableContext } from '../helpers/virtual'
 import { TableRecord } from '../types'
 
 import { TableComponent } from './index'
@@ -182,16 +183,22 @@ export const Virtual = <T extends TableRecord = TableRecord>(
 ): TableComponent<T> => function VirtualModule ({ __EXPERIMENTAL__VIRTUAL_TANSTACK, __EXPERIMENTAL__VIRTUAL, ...props }) {
   const isVirtual = Boolean(__EXPERIMENTAL__VIRTUAL_TANSTACK ?? __EXPERIMENTAL__VIRTUAL)
 
+  // a function body is a custom body renderer (e.g. useVT) that virtualizes on its own
+  const virtualizesBody = isVirtual && typeof props.components?.body !== 'function'
+
   const components = useMemo(() => {
     const body = props.components?.body
-    // a function body is a custom body renderer (e.g. useVT) that virtualizes on its own
-    if (!isVirtual || typeof body === 'function') return props.components
+    if (!virtualizesBody || typeof body === 'function') return props.components
 
     return {
       ...props.components,
       body: { ...body, wrapper: createVirtualBody(body?.wrapper ?? 'tbody') }
     }
-  }, [isVirtual, props.components])
+  }, [virtualizesBody, props.components])
 
-  return <Component {...props} components={components} />
+  return (
+    <VirtualTableContext.Provider value={virtualizesBody}>
+      <Component {...props} components={components} />
+    </VirtualTableContext.Provider>
+  )
 }
