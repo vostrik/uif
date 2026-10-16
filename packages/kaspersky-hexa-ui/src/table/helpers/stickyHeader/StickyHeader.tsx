@@ -10,6 +10,7 @@ import {
   TableCssProps
 } from '../../tableCss'
 import { findParentForClassName, isColumnVisible } from '../common'
+import { VirtualTanstackColumnsWidthHelper } from '../virtualTanstack/VirtualTanstackColumnsWidthHelper'
 
 import { useResizableColumnsContext } from './ResizableColumnsContext'
 
@@ -46,9 +47,10 @@ export const TableStickyHeader = styled.div.withConfig({
   }
 `
 
-export function StickyHeaderWrapper ({ children, className }: {
+export function StickyHeaderWrapper ({ children, className, isVirtualTanstack }: {
   children: React.ReactNode,
-  className: string
+  className: string,
+  isVirtualTanstack?: boolean
 }) {
   const portalRef = useRef<HTMLTableElement | null>(null)
   if (!portalRef.current) {
@@ -89,12 +91,16 @@ export function StickyHeaderWrapper ({ children, className }: {
   return (
     <thead ref={theadRef} style={{ visibility: 'collapse' }}>
       <tr>
-        {renderColumnsWidthHelper('th', 'column')}
+        {isVirtualTanstack
+          ? <VirtualTanstackColumnsWidthHelper Tag="th" classname="column" bodyTheadRef={theadRef} headerTableRef={portalRef} syncWidths />
+          : renderColumnsWidthHelper('th', 'column')}
       </tr>
       {portalRef.current ? createPortal(
         <>
           <colgroup>
-            {renderColumnsWidthHelper('col', 'col')}
+            {isVirtualTanstack
+              ? <VirtualTanstackColumnsWidthHelper Tag="col" classname="col" bodyTheadRef={theadRef} headerTableRef={portalRef} />
+              : renderColumnsWidthHelper('col', 'col')}
           </colgroup>
           <thead className={className}>
             {children}
