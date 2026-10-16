@@ -1,0 +1,12 @@
+import{M as a,R as r,H as y}from"./iframe-Df7vKfJt.js";import{e as f,g as S,c as P}from"./propPresentation-CP3VpjtH.js";import{I as u}from"./InputNumber-B5i2pNIr.js";import{s as x}from"./resolveDesignControls-CFhBuB_d.js";import{v as I}from"./typesHelpers-tpz7Of7L.js";const N="",E={pixsoView:N},i=(e,t={})=>f(x[e],t),O={placeholder:"Placeholder",disabled:!1,readOnly:!1,validationStatus:"default",integerOnly:!1,allowEmpty:!1},p={validationStatus:{description:"Визуальный статус валидации поля",control:"select",options:[...I]},disabled:i("disabled"),readOnly:i("readOnly"),prefix:{description:"Префикс перед полем ввода",control:"text"},suffix:{description:"Суффикс после поля ввода",control:"text"},placeholder:{description:"Подсказка в пустом поле",control:"text"},integerOnly:{description:"Разрешить ввод только целых чисел",control:"boolean"},allowEmpty:{description:"Разрешить пустое значение в поле",control:"boolean"},keyboard:{description:"Включить управление через клавиатуру",control:"boolean"},step:{description:"Шаг - число, на которое увеличивается или уменьшается текущее значение",control:{type:"number",min:0}},min:{description:"Минимально допустимое значение",control:"number"},max:{description:"Максимально допустимое значение",control:"number"}},v=y.div`
+  width: 300px;
+`,m={argTypes:P(p),args:{...O,testId:"input-number-test-id",klId:"input-number-kl-id"},parameters:{badges:[a.stable,a.reviewedByDesign],design:E.pixsoView},decorators:[(e,t)=>r.createElement(v,null,r.createElement(e,{...t}))]},_={title:"Hexa UI Components/Inputs/InputNumber",component:u,tags:["!autodocs"],includeStories:["Playground"],excludeStories:["inputNumberStorySettings"],...m},w=({value:e,onChange:t,...b})=>{const[g,n]=r.useState(e);return r.useEffect(()=>{n(e)},[e]),r.createElement(u,{...b,value:g,onChange:s=>{n(s),t==null||t(s)}})},o={name:"Playground",render:e=>r.createElement(w,{...e}),parameters:{controls:{include:S(p),sort:"none"}}};var l,d,c;o.parameters={...o.parameters,docs:{...(l=o.parameters)==null?void 0:l.docs,source:{originalSource:`{
+  name: 'Playground',
+  render: args => <InputNumberPlayground {...args} />,
+  parameters: {
+    controls: {
+      include: getControlsInclude(inputNumberPropPresentation),
+      sort: 'none'
+    }
+  }
+}`,...(c=(d=o.parameters)==null?void 0:d.docs)==null?void 0:c.source}}};const h=["inputNumberStorySettings","Playground"],A=Object.freeze(Object.defineProperty({__proto__:null,Playground:o,__namedExportsOrder:h,default:_,inputNumberStorySettings:m},Symbol.toStringTag,{value:"Module"}));export{A as I};
