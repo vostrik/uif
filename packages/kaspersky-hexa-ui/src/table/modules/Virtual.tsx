@@ -20,7 +20,6 @@ import React, {
   useState
 } from 'react'
 
-import { VirtualTableContext } from '../helpers/virtual/VirtualTableContext'
 import { TableRecord } from '../types'
 
 import { TableComponent } from './index'
@@ -196,9 +195,5 @@ export const Virtual = <T extends TableRecord = TableRecord>(
     }
   }, [virtualizesBody, props.components])
 
-  return (
-    <VirtualTableContext.Provider value={virtualizesBody}>
-      <Component {...props} components={components} />
-    </VirtualTableContext.Provider>
-  )
+  return <Component {...props} __EXPERIMENTAL__VIRTUAL_TANSTACK={virtualizesBody} components={components} />
 }

@@ -3,15 +3,12 @@ import React, {
   ElementType,
   ReactNode,
   RefObject,
-  useContext,
   useLayoutEffect,
   useState
 } from 'react'
 
 import { TableColumn } from '../../types'
 import { isColumnVisible } from '../common'
-
-import { VirtualTableContext } from './VirtualTableContext'
 
 type ColumnSlot = 'selection' | 'expand' | 'data'
 
@@ -45,6 +42,7 @@ const syncHeaderColumnWidths = (bodyTable: HTMLTableElement, headerTable: HTMLTa
 }
 
 type UseStickyHeaderBodySyncParams = {
+  isVirtual?: boolean,
   theadRef: RefObject<HTMLTableSectionElement>,
   portalRef: RefObject<HTMLTableElement>,
   columns: TableColumn[]
@@ -55,8 +53,7 @@ type UseStickyHeaderBodySyncParams = {
  * columns) and copies the real body column widths, so it stays aligned on resize.
  * Returns a renderer for the helper row and the header colgroup, or null when the default render is used.
  */
-export const useStickyHeaderBodySync = ({ theadRef, portalRef, columns }: UseStickyHeaderBodySyncParams) => {
-  const isVirtual = useContext(VirtualTableContext)
+export const useStickyHeaderBodySync = ({ isVirtual, theadRef, portalRef, columns }: UseStickyHeaderBodySyncParams) => {
   const [slots, setSlots] = useState<ColumnSlot[] | null>(null)
 
   useLayoutEffect(() => {

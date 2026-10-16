@@ -47,9 +47,10 @@ export const TableStickyHeader = styled.div.withConfig({
   }
 `
 
-export function StickyHeaderWrapper ({ children, className }: {
+export function StickyHeaderWrapper ({ children, className, isVirtual }: {
   children: React.ReactNode,
-  className: string
+  className: string,
+  isVirtual?: boolean
 }) {
   const portalRef = useRef<HTMLTableElement | null>(null)
   if (!portalRef.current) {
@@ -57,7 +58,7 @@ export function StickyHeaderWrapper ({ children, className }: {
   }
   const theadRef = useRef<HTMLTableSectionElement>(null)
   const { columns, hasRowSelection } = useResizableColumnsContext()
-  const renderVirtualColumnsWidthHelper = useStickyHeaderBodySync({ theadRef, portalRef, columns })
+  const renderVirtualColumnsWidthHelper = useStickyHeaderBodySync({ isVirtual, theadRef, portalRef, columns })
 
   useEffect(() => {
     if (portalRef.current && theadRef.current) {
@@ -109,3 +110,7 @@ export function StickyHeaderWrapper ({ children, className }: {
     </thead>
   )
 }
+
+export const VirtualStickyHeaderWrapper = (props: { children: React.ReactNode, className: string }) => (
+  <StickyHeaderWrapper {...props} isVirtual />
+)

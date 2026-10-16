@@ -2,7 +2,6 @@ import { useUpdateEffect } from '@helpers/useUpdateEffect'
 import React, {
   MouseEventHandler,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -13,8 +12,12 @@ import { TableComponent } from '..'
 import { ITableProps, TableColumn, TableRecord } from '../..'
 import { isColumnReadonly, isColumnVisible } from '../../helpers/common'
 import { getPersistentStorageValue, updatePersistentStorage } from '../../helpers/persistentStorage'
-import { ResizableColumnsContext, STICKY_HEADER_CLASS, StickyHeaderWrapper } from '../../helpers/stickyHeader'
-import { VirtualTableContext } from '../../helpers/virtual/VirtualTableContext'
+import {
+  ResizableColumnsContext,
+  STICKY_HEADER_CLASS,
+  StickyHeaderWrapper,
+  VirtualStickyHeaderWrapper
+} from '../../helpers/stickyHeader'
 import { ResizableHeaderCellProps, SetColumns } from './types'
 
 import { addWidthFromStorage, applyResizingMode, selectAutoResizingMode, resizeColumns } from './helpers'
@@ -174,13 +177,14 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
     maxColumnsForAutoResizing = 1,
     defaultColumnWidth = DEFAULT_COLUMN_WIDTH
   } = props
+  const isVirtual = Boolean(props.__EXPERIMENTAL__VIRTUAL_TANSTACK)
   const components = useMemo(() => ({
     ...props.components,
     header: {
       cell: ResizableTitle,
-      ...(props.stickyHeader !== undefined && { wrapper: StickyHeaderWrapper })
+      ...(props.stickyHeader !== undefined && { wrapper: isVirtual ? VirtualStickyHeaderWrapper : StickyHeaderWrapper })
     }
-  }), [props.components, props.stickyHeader])
+  }), [props.components, props.stickyHeader, isVirtual])
 
   const [columnsFromStorage, setColumnsFromStorage] = useState(
     addWidthFromStorage<T>({ columns: props.columns, storageKey: props.storageKey })
@@ -266,7 +270,6 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
   }, [props.columns])
 
   const hasRowSelection = !!props.rowSelection
-  const isVirtual = useContext(VirtualTableContext)
 
   /**
    * StickyHeader реализован через вынос thead в отдельную таблицу, потому что браузеры не умеют держать общий
