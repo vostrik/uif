@@ -1,8 +1,9 @@
 import { act, render } from '@testing-library/react'
 import React, { ComponentType } from 'react'
 
-import { STICKY_HEADER_CLASS, StickyHeaderWrapper, VirtualTanstackStickyHeaderWrapper } from '../helpers/stickyHeader'
+import { STICKY_HEADER_CLASS, StickyHeaderWrapper } from '../helpers/stickyHeader'
 import { ResizableColumnsContext } from '../helpers/stickyHeader/ResizableColumnsContext'
+import { VirtualTanstackStickyHeaderWrapper } from '../helpers/virtualTanstack/VirtualTanstackStickyHeaderWrapper'
 import { TableComponent } from '../modules'
 import { VIRTUAL_TANSTACK_SPACER_CLASS, VirtualTanstack } from '../modules/VirtualTanstack'
 import { TestTable } from '../test-utils/TableTestingClass'
@@ -60,11 +61,10 @@ afterEach(() => {
 
 /** Renders the VirtualTanstack module over a probe component that records what the module passed down */
 const renderVirtualModule = (props: Partial<ITableProps>) => {
-  const received: { components?: ITableProps['components'], isVirtualTanstack?: boolean, hasLegacyFlag?: boolean } = {}
+  const received: { props?: ITableProps, components?: ITableProps['components'] } = {}
   const Probe = ((probeProps: ITableProps) => {
+    received.props = probeProps
     received.components = probeProps.components
-    received.isVirtualTanstack = probeProps.__EXPERIMENTAL__VIRTUAL_TANSTACK
-    received.hasLegacyFlag = '__EXPERIMENTAL__VIRTUAL' in probeProps
     return null
   }) as TableComponent
   const VirtualProbe = VirtualTanstack(Probe)
@@ -74,7 +74,10 @@ const renderVirtualModule = (props: Partial<ITableProps>) => {
 
 describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
   /** Body table with selection, expand and two data columns, as antd renders it */
-  const renderStickyHeader = (hasRowSelection: boolean, Wrapper: typeof StickyHeaderWrapper = StickyHeaderWrapper) => render(
+  const renderStickyHeader = (
+    hasRowSelection: boolean,
+    Wrapper: typeof StickyHeaderWrapper | typeof VirtualTanstackStickyHeaderWrapper = StickyHeaderWrapper
+  ) => render(
     <div className={STICKY_HEADER_CLASS}>
       <div className="ant-table" />
       <table>
@@ -141,7 +144,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
     })
   })
 
-  describe('StickyHeaderWrapper with isVirtualTanstack', () => {
+  describe('VirtualTanstackStickyHeaderWrapper', () => {
     it('repeats the body column structure and copies the body column widths', () => {
       const { container } = renderStickyHeader(true, VirtualTanstackStickyHeaderWrapper)
 
@@ -163,40 +166,44 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       expect(resizeObservers.some(observer => observer.observe.mock.calls.length > 0)).toBe(true)
     })
 
-    it('keeps the default render with isVirtualTanstack={false}', () => {
-      const NotVirtualTanstackWrapper: typeof StickyHeaderWrapper = props => <StickyHeaderWrapper {...props} isVirtualTanstack={false} />
-      const { container } = renderStickyHeader(true, NotVirtualTanstackWrapper)
+    it('is used for the sticky header of a real table with the flag', async () => {
+      const { container } = render(
+        <TestTable columns={columns} dataSource={makeData(5)} stickyHeader={0} rowSelection={{}} __EXPERIMENTAL__VIRTUAL_TANSTACK />
+      )
+      await act(async () => {})
 
-      const helperCells = container.querySelectorAll(`.${STICKY_HEADER_CLASS} > table > thead > tr:first-child > th`)
-      expect(helperCells).toHaveLength(3)
-      expect(helperCells[1]).not.toHaveClass('ant-table-expand-icon-column')
+      const portalTable = container.querySelector(`.${STICKY_HEADER_CLASS} .ant-table > table`) as HTMLTableElement
+      expect(portalTable).toBeTruthy()
+      expect(portalTable.style.tableLayout).toBe('fixed')
+      const bodyCols = container.querySelectorAll('.ant-table-content > table > colgroup > col')
+      expect(portalTable.querySelectorAll('colgroup > col')).toHaveLength(bodyCols.length)
     })
   })
 
-  describe('Virtual module', () => {
-    it('does nothing without the flag', () => {
+  describe('VirtualTanstack module', () => {
+    it('passes exactly the same props without the flag', () => {
       const Row = (props: object) => <tr {...props} />
-      const components = { body: { row: Row } }
-      const received = renderVirtualModule({ components })
+      const props = { components: { body: { row: Row } }, rowKey: 'id', __EXPERIMENTAL__VIRTUAL_TANSTACK: false }
+      const received = renderVirtualModule(props)
 
-      expect(received.isVirtualTanstack).toBe(false)
-      expect(received.components).toBe(components)
+      expect(received.props).toEqual(props)
+      expect(received.components).toBe(props.components)
     })
 
-    it('passes __EXPERIMENTAL__VIRTUAL_TANSTACK and replaces components.body.wrapper with the flag', () => {
-      const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL_TANSTACK: true })
+    it('replaces components.body.wrapper and keeps the other props with the flag', () => {
+      const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL_TANSTACK: true, rowKey: 'id' })
 
-      expect(received.isVirtualTanstack).toBe(true)
+      expect(received.props).toMatchObject({ __EXPERIMENTAL__VIRTUAL_TANSTACK: true, rowKey: 'id' })
       const wrapper = (received.components?.body as { wrapper?: unknown })?.wrapper
       expect(typeof wrapper).toBe('function')
     })
 
-    it('treats the legacy __EXPERIMENTAL__VIRTUAL flag the same way and does not pass it down', () => {
-      const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL: true })
+    it('ignores the legacy __EXPERIMENTAL__VIRTUAL flag and passes it down', () => {
+      const props = { __EXPERIMENTAL__VIRTUAL: true }
+      const received = renderVirtualModule(props)
 
-      expect(received.isVirtualTanstack).toBe(true)
-      expect(received.hasLegacyFlag).toBe(false)
-      expect(typeof (received.components?.body as { wrapper?: unknown })?.wrapper).toBe('function')
+      expect(received.props).toEqual(props)
+      expect(received.components).toBeUndefined()
     })
 
     it('keeps the other body components', () => {
@@ -208,13 +215,13 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       expect(typeof body.wrapper).toBe('function')
     })
 
-    it('keeps a custom body renderer (useVT) and passes __EXPERIMENTAL__VIRTUAL_TANSTACK=false', () => {
+    it('passes exactly the same props with a custom body renderer (useVT)', () => {
       const customBody = () => null
-      const components = { body: customBody }
-      const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL_TANSTACK: true, components: components as ITableProps['components'] })
+      const props = { __EXPERIMENTAL__VIRTUAL_TANSTACK: true, components: { body: customBody } as ITableProps['components'] }
+      const received = renderVirtualModule(props)
 
-      expect(received.isVirtualTanstack).toBe(false)
-      expect(received.components).toBe(components)
+      expect(received.props).toEqual(props)
+      expect(received.components).toBe(props.components)
     })
 
     it('renders an empty body with the base wrapper', () => {
