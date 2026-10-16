@@ -21,7 +21,7 @@ import { SidebarFilters } from './SidebarFilters'
 import { SortingAndFilters } from './SortingAndFilters'
 // import { ExpandableRows } from './ExpandableRows'
 import { ToolbarIntegration } from './ToolbarIntegration'
-import { VirtualTanstack as Virtual } from './Virtual'
+import { VirtualTanstack as Virtual } from './VirtualTanstack'
 
 export type TableComponent<T extends TableRecord = TableRecord> = FC<ITableProps<T> & React.RefAttributes<TableRef>>
 export type TableModule<T extends TableRecord = TableRecord> = (Component: TableComponent<T>) => TableComponent<T>
