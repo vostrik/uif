@@ -1,0 +1,10 @@
+import{S as c}from"./StatesMatrix-C5IoS7xO.js";import{R as s}from"./iframe-aBV3CYH3.js";import{T as n}from"./Toggle-CFrSJDb6.js";import"./i18n-BaNkAUxQ.js";import"./preload-helper-Dp1pzeXC.js";import"./AdditionalContent-CBTW8zX-.js";import"./HelpMessage-DBlyCl9F.js";import"./useMergedState-CYatStVN.js";import"./KeyCode-c5NdJp32.js";import"./type-GmYgjqv3.js";import"./wave-iSaySfuY.js";import"./FormLabel-d3dW3auX.js";import"./Tag-DY7rUT5S.js";import"./TextReducer-D8U9kJ52.js";import"./index-BkZLf1_p.js";import"./omit-DXgDXInf.js";import"./colors-nuNhf3hF.js";import"./Group-MwZqih5e.js";const M={title:"Screenshot Tests/Toggle",component:n,tags:["!autodocs"]},i=[{key:"default",label:"Default"},{key:"hover",label:"Hover"},{key:"active",label:"Active"},{key:"focus-visible",label:"Focus visible"},{key:"readonly",label:"Readonly",readonly:!0},{key:"disabled",label:"Disabled",disabled:!0},{key:"loading",label:"Loading",loading:!0}],d=[{key:"unchecked",label:"Unchecked",checked:!1},{key:"checked",label:"Checked",checked:!0},{key:"unchecked-before",label:"Unchecked",checked:!1,labelPosition:"before"},{key:"checked-before",label:"Checked",checked:!0,labelPosition:"before"}],m=(t,a)=>s.createElement(n,{checked:a.checked,onChange:()=>{},disabled:t.disabled,readonly:t.readonly,loading:t.loading,labelPosition:a.labelPosition,required:!0,tooltip:"Text value",description:"Text value"},"Text value"),e={name:"States",parameters:{controls:{include:[]},layout:"fullscreen"},render:()=>s.createElement(c,{rows:i,columns:d,renderCell:m})};var o,r,l;e.parameters={...e.parameters,docs:{...(o=e.parameters)==null?void 0:o.docs,source:{originalSource:`{
+  name: 'States',
+  parameters: {
+    controls: {
+      include: []
+    },
+    layout: 'fullscreen'
+  },
+  render: () => <StatesMatrix rows={stateRows} columns={variantColumns} renderCell={renderStateCell} />
+}`,...(l=(r=e.parameters)==null?void 0:r.docs)==null?void 0:l.source}}};const U=["States"];export{e as States,U as __namedExportsOrder,M as default};

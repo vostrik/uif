@@ -1,0 +1,146 @@
+import{j as e,M as s,D as l}from"./blocks-DZu63bax.js";import{useMDXComponents as d}from"./index-BDstJRCu.js";import{D as c}from"./DocPageLayout-BUnRw7iv.js";import{D as o,a as i,A as u}from"./AutodocArgsTable-cZk2JznF.js";import{C as g}from"./ComponentChangelog-DYqKvHRV.js";import{D as C}from"./DocPageHeader-DF0XJHi9.js";import{D as V,a as x}from"./propPresentation-DwmroTjb.js";import{C as j}from"./CodeViewer-CSDhR0bH.js";import{C as p,a as w,d as f,e as t}from"./CodeViewer.stories-DfHkDZaq.js";import"./preload-helper-Dp1pzeXC.js";import"./iframe-aBV3CYH3.js";import"./index-DOxQrBLL.js";import"./TextReducer-D8U9kJ52.js";import"./SubComponents-ClGCVWuG.js";import"./TextWithTruncation---FFfZpN.js";import"./ArrowDownSolid-Bgc_LaMP.js";import"./ArrowRightSolid-B1ur2LqF.js";import"./Divider-C5DkIf6Z.js";import"./Badge-CXW4mzDn.js";import"./type-GmYgjqv3.js";import"./colors-nuNhf3hF.js";import"./Indicator-HvddXj7N.js";import"./Tabs-qmUUpk31.js";import"./i18n-BaNkAUxQ.js";import"./shouldForwardProp-Cdy-RLhZ.js";import"./FormLabel-d3dW3auX.js";import"./Tag-DY7rUT5S.js";import"./index-BkZLf1_p.js";import"./omit-DXgDXInf.js";import"./wave-iSaySfuY.js";import"./Group-MwZqih5e.js";import"./useMergedState-CYatStVN.js";import"./KeyCode-c5NdJp32.js";import"./isEqual--rqab9QN.js";import"./index-CaGZCEgq.js";import"./addEventListener-50hqKf1t.js";import"./Portal-ndL5V8tE.js";import"./regeneratorRuntime-xyLIQKWK.js";import"./focus-DNariyKj.js";import"./EllipsisOutlined-DRPyaQHR.js";import"./useIntersectionChildren-wt-q8pDh.js";import"./Button-DgUfCEii.js";import"./Dropdown-KoQ7Ozhb.js";import"./ArrowRight-BspTRk2f.js";import"./Toggle-CFrSJDb6.js";import"./AdditionalContent-CBTW8zX-.js";import"./HelpMessage-DBlyCl9F.js";import"./Loader-CchH_JSv.js";import"./index-CqTa44a8.js";import"./v4-BoP187Zn.js";import"./button-DGh54oSp.js";import"./useTranslation-C3jgrI3o.js";import"./generateId-BXJELych.js";import"./Advertisement-YbmhQJHL.js";import"./Thread-BAsBjI84.js";import"./index-D1GxMtNU.js";import"./ResizeInput-8s3s3SM5.js";import"./ToggleButton-BN7oEMkk.js";import"./imaskDateOptionsGenerator-BFwevWds.js";import"./input-CiZcLd1s.js";import"./index-Chjiymov.js";import"./Field-CyDOMlx9.js";import"./Help-m5L_TcE_.js";import"./Markdown-DM5b4r5r.js";import"./index-D7pAken6.js";import"./Textbox-BtYMJ3_s.js";import"./useGlobalStyles-BWqTjI30.js";import"./InputMasked-jxiIpy-4.js";import"./useThemedTextbox-QNQ8dboe.js";import"./typesHelpers-tpz7Of7L.js";import"./useClassNamedTextbox-DhQ9d7Tv.js";import"./InputNumber-CGktXF1w.js";import"./index-CYEAabar.js";import"./SearchOutlined-CWG8nuz8.js";import"./InputPassword-BekFf1yQ.js";import"./StatusOkSolid-CIlAhBZx.js";import"./IconResolver-CiXsV5MV.js";import"./Placeholder-C0eqEAUH.js";import"./ServicesNav-But2Izn6.js";import"./ArrowRightMini-TOE2Nd0v.js";import"./ArrowDown-U0bZ8Xe9.js";import"./Toolbar-CCqZ31Tw.js";import"./useImmutableRef-CVgbrCZS.js";import"./Menu2-BHuDGMSq.js";import"./Settings21-BK87wbeu.js";import"./IconSearch-ChDaKnqu.js";import"./Table-Ccgt7k_4.js";import"./pickAttrs-Yiyzt30t.js";import"./Pagination-C2Z195mY.js";import"./RightOutlined-DcV8oXMp.js";import"./List-BwiQBHsG.js";import"./iconUtil-DM7aM5wT.js";import"./useForceUpdate-DwtDhj9M.js";import"./Tree-ihiMeyif.js";import"./index-DGmaz9Et.js";import"./index-Cgy3Aexl.js";import"./Sider-Blf5BAZU.js";import"./index-DbhZkxXv.js";import"./_getTag-DHuWD1cF.js";import"./scrollTo-hTFG2l2s.js";import"./Card-oHKhkOpy.js";import"./Delete-Ri_YWxy-.js";import"./useThemedScrollbar-DgOy-GlW.js";import"./scrollbarCss-DxkhLnsX.js";import"./Radio-BkxYXxGm.js";import"./useId-C8P8VwVw.js";import"./Checkbox-CPlAGo0k.js";import"./Pagination-0db0mYix.js";import"./Select-CpM_iyi4.js";import"./ExpandableText-BjJUpKFk.js";import"./Chip-BH4FU_Sx.js";import"./Reload-BJ0_rNJO.js";import"./Search-zhOU7Kxo.js";import"./Modal-XjETc6k1.js";import"./PortalWrapper-B_AymT-I.js";import"./StatusOkOutline-SGeFpZ58.js";import"./Sidebar-BaV1RIPZ.js";import"./CrossM-CXbEmBhO.js";import"./RangePicker-DxwTuHyR.js";import"./RangeSeparator-BvgAfJAU.js";import"./WithGlobalStyles-CshPVrGH.js";import"./dateFns-DXZfCNZL.js";import"./useThemedPicker-CcEdssrq.js";import"./Calendar-DLN7hbak.js";import"./Grid-BW46MuRJ.js";import"./SegmentedButton-1Siq8ufz.js";import"./Plus-BdW_96Qn.js";import"./StatusWarningSolid-Ddx8ib_g.js";import"./ArrowRightSmall-BePVagMg.js";import"./Browser-DvqQVXVE.js";import"./Expand-B8c12v0r.js";import"./Bell-CxhuWeMY.js";import"./CodeCompare-CMaapqxU.js";import"./SettingsGear-3doj5gz3.js";import"./ExpandAll-cAMQlMW7.js";import"./CheckPoint-BjLw2E-M.js";import"./TreeNav-DDcvDHhk.js";import"./Tree-D7-OOBrI.js";import"./Copy-Blx_PLg0.js";import"./Download2-CWdssxp8.js";import"./Edit-DlfdyVuk.js";import"./StatusLevelMedium-BvGCRtXd.js";import"./EngineeringStation-BDpZInBe.js";import"./FileItem-BkMjnwil.js";import"./Heart-CW51H6XW.js";import"./Servers-Aw6udXs9.js";import"./NotificationService-7w7ttS21.js";import"./Wrap-2e4dxUfV.js";import"./LockGroup-B0H533Nf.js";import"./Menu3-DCkw0fyi.js";import"./Minus-Dz7jC7cl.js";import"./Moon-hEZFe54_.js";import"./LicenseCard-BqacWo9d.js";import"./Status-DjCgTIeh.js";import"./ProgressBar-O2IiN1jT.js";import"./Menu-C2UyU_z7.js";import"./Submenu-B8PVjchN.js";import"./PlusM-ybHrZ9mN.js";import"./Printer-BATyMyI-.js";import"./Server-PPQGqk9e.js";import"./Settings-BkPdfxlt.js";import"./TopNavigation-Jj6bOySg.js";import"./UserAccount-BCpfQ1RZ.js";import"./HorizontalNav-BKtIqGjH.js";import"./Youtube-B8xF4FFT.js";import"./AccordionPanel-DxD0MUh7.js";import"./Upload-CVJUYRgu.js";import"./UserGroup-BNfxW4ql.js";import"./index-Csnyubmo.js";import"./ToggleButtonGroup-B9cPsv-w.js";import"./Uploader-B3FPBDez.js";import"./TimeInput-Da5kuw0M.js";import"./TagReductionGroup-B3vf5DRF.js";import"./Alert-BNL4DyHo.js";import"./Anchor-V2FjX25m.js";import"./Breadcrumbs-CVd-axfs.js";import"./DetailsPage-DwBguR2K.js";import"./FormTrigger-Ct5Hf1cf.js";import"./Gallery-DuEIzFQY.js";import"./Scrollbar-Cu6DsGon.js";import"./KeyValue-BUt9XpId.js";import"./InformationCard-D9qAZHxv.js";import"./Label-DHxFvJ_z.js";import"./LoadingOverlay-CFxCZpaz.js";import"./Notification-D6Lkvd--.js";import"./PageHeader-BC-foLom.js";import"./Panel-n_FrnarC.js";import"./Placeholder-Ddp0ID10.js";import"./QuickFilter-D8Rhi-Vb.js";import"./RangeTimeInput-C74rUWni.js";import"./Repeater-F-671Znw.js";import"./SegmentedControl-Db29q7aR.js";import"./Severity-Cr5M6DVM.js";import"./Skeleton-DNIELxUf.js";import"./StatusCard-K_E0kk3q.js";import"./StatusOkSolid-D1ZOlgD8.js";import"./StatusWarningSolid-DTORNONU.js";import"./TenantFilter-02vR9q_R.js";import"./basic-data-transfer.addon-dpVy2GFo.js";import"./TextDiff-DQ4VMUsR.js";import"./TreeSelect-CugKBPAo.js";import"./WeeklySchedule-Cqlypjbh.js";import"./Wizard-DC0SjPxf.js";import"./types-D1pYS17c.js";import"./types-CHQbqp6R.js";import"./index-B1pEjrXg.js";import"./withMeta-C33uN6BS.js";import"./resolveDesignControls-CFhBuB_d.js";const v={state:{description:"Интерактивное состояние компонента",type:"hover | focus | readonly | enabled | active"},placeholder:{description:"Отображение подсказки-плейсхолдера вместо содержимого редактора",type:"true | false"},invalid:{description:"Состояние ошибки валидации",type:"false | true"},valid:{description:"Состояние успешной валидации",type:"false | true"},orientation:{description:"Ориентация полосы прокрутки",type:"horizontal | vertical"},mode:{description:"Визуальный статус валидации поля",type:"critical | warning | success | none"},size:{description:"Размер компонента",type:"small | medium"},description:{description:"Отображение поясняющего текста под редактором",type:"Boolean",defaultValue:"false"},invalidSyntax:{description:"Подсветка синтаксической ошибки в коде",type:"Boolean",defaultValue:"false"},scrollbar:{description:"Отображение вертикальной полосы прокрутки",type:"Boolean",defaultValue:"false"},scrollbarHorizontal:{description:"Отображение горизонтальной полосы прокрутки",type:"Boolean",defaultValue:"false"},highlight:{description:"Подсветка выделенных строк в области редактора",type:"Boolean",defaultValue:"false"},text:{label:"✏️ text",description:"Текст сообщения валидации под редактором",type:"Text",defaultValue:"validationText"},descriptionText:{label:"✏️ description",description:"Текст описания под редактором",type:"Text",defaultValue:"Text"}};function n(r){return o||m("Tabs",!1),o.TabPane||m("Tabs.TabPane",!0),e.jsxs(e.Fragment,{children:[e.jsx(s,{of:p,name:"CodeViewer Docs"}),`
+`,e.jsxs(c,{children:[e.jsx(C,{title:"CodeViewer"}),e.jsxs(o,{defaultActiveKey:"description",children:[e.jsx(o.TabPane,{tab:"Описание",children:e.jsx(i,{description:`
+**CodeViewer** — редактор кода с подсветкой синтаксиса на базе CodeMirror для ввода, просмотра и проверки текстовых фрагментов
+
+**CodeViewer** — когда в интерфейсе нужно ввести или показать фрагмент кода, конфигурации или скрипта с подсветкой синтаксиса: правило в форме, JSON/XML в боковой панели, фрагмент YARA или TypeScript в модальном окне. Компонент рассчитан на осмысленный объём текста с нумерацией строк и опциональной проверкой содержимого.
+
+Для сравнения двух версий одного текста используйте **CodeCompare**, а не два **CodeViewer** рядом. Для короткой однострочной вставки без подсветки и нумерации строк выбирайте **Input** или **Textarea**.`})},"description"),e.jsxs(o.TabPane,{tab:"Структура",children:[e.jsx(i,{description:"**CodeViewer** отображает область редактирования с нумерацией строк, подсветкой синтаксиса и историей изменений. Встроенные языки: `html`, `json`, `xml`, `javascript`, `jsx`, `typescript`, `tsx`, `yara`; дополнительные задаются через **customLanguages**. Настраиваются **language**, **initialValue**, режим **readonly**, статус **validationStatus**, размер (**width**, **height**, **resizable**, **resizeAxis**, **minConstraints**, **maxConstraints**), подсветка строк **linesHighlighted**, перенос **lineWrapping**, валидация **linter**, автодополнение **completions** и колбэк **onChange**. На корневом объекте доступны модули CodeMirror: `View`, `LangJson`, `Lint`, `Commands`, `Language`, `Autocomplete`, `State`."}),e.jsx(i,{title:"language",description:"Обязательный проп. Язык подсветки синтаксиса. Встроенные значения: `yara`, `xml`, `json`, `html`, `tsx`, `jsx`, `javascript`, `typescript`. Для языков вне списка передайте расширение в **customLanguages** и укажите соответствующий ключ.",setupCode:w,previewDirection:"vertical",code:`
+        <CodeViewer language="javascript" initialValue={javascriptSample} />
+        <CodeViewer language="json" initialValue={jsonSample} />
+        <CodeViewer language="yara" initialValue={yaraSample} />
+      `}),e.jsx(i,{title:"initialValue",description:"Начальное содержимое редактора. При изменении пропа текст в области полностью заменяется. Если не задан или `null`, используется пустая строка.",setupCode:f,previewDirection:"vertical",code:`
+        <CodeViewer language="javascript" initialValue={javascriptSample} />
+        <CodeViewer language="javascript" />
+      `}),e.jsx(i,{title:"readonly",description:"Режим только для чтения: редактирование отключено, курсор скрыт. Доступные значения: `true`, `false`. По умолчанию — `false`.",setupCode:t,code:`
+        <CodeViewer language="javascript" initialValue={editableSample} />
+        <CodeViewer language="javascript" initialValue={readonlySample} readonly />
+      `}),e.jsx(i,{title:"validationStatus",description:"Визуальный статус валидации поля. Доступные значения: `default`, `error`, `success`. По умолчанию — `default`.",setupCode:t,previewDirection:"vertical",code:`
+        <CodeViewer
+          language="json"
+          initialValue={validationSample}
+          validationStatus="default"
+        />
+        <CodeViewer
+          language="json"
+          initialValue={validationSample}
+          validationStatus="error"
+        />
+        <CodeViewer
+          language="json"
+          initialValue={validationSample}
+          validationStatus="success"
+        />
+      `}),e.jsx(i,{title:"resizable",description:"Разрешить пользователю менять размер области редактора за уголок в правом нижнем углу. Доступные значения: `true`, `false`. По умолчанию — `false`.",setupCode:t,code:`
+        <CodeViewer language="javascript" initialValue={resizeSample} />
+        <CodeViewer language="javascript" initialValue={resizeSample} resizable />
+      `}),e.jsx(i,{title:"resizeAxis",description:"Направление изменения размера при **resizable**=`true`. Доступные значения: `both`, `x`, `y`, `none`.",setupCode:t,code:`
+        <CodeViewer
+          language="javascript"
+          initialValue={resizeSample}
+          resizable
+          resizeAxis="both"
+        />
+        <CodeViewer
+          language="javascript"
+          initialValue={resizeSample}
+          resizable
+          resizeAxis="y"
+        />
+      `}),e.jsx(i,{title:"width и height",description:"Начальная ширина и высота области редактора в пикселях. По умолчанию — `400` и `200`.",setupCode:t,code:`
+        <CodeViewer language="javascript" initialValue={resizeSample} />
+        <CodeViewer
+          language="javascript"
+          initialValue={resizeSample}
+          width={600}
+          height={400}
+        />
+      `}),e.jsx(i,{title:"minConstraints и maxConstraints",description:"Минимальные и максимальные размеры при **resizable**=`true` — пары `[ширина, высота]` в пикселях. По умолчанию — `[300, 150]` и `[1600, 1200]`.",setupCode:t,code:`
+        <CodeViewer
+          language="javascript"
+          initialValue={resizeSample}
+          resizable
+          minConstraints={[400, 200]}
+          maxConstraints={[800, 500]}
+        />
+      `}),e.jsx(i,{title:"linesHighlighted",description:'Номера строк для фоновой подсветки в режиме **readonly**=`true`. Формат элементов массива: одна строка (`"15"`) или диапазон (`"2-4"`). Без **readonly** подсветка не применяется.',setupCode:t,code:`
+        <CodeViewer
+          language="javascript"
+          readonly
+          initialValue={highlightedSample}
+          linesHighlighted={['2-4']}
+        />
+      `}),e.jsx(i,{title:"lineWrapping",description:"Перенос длинных строк на следующую строку внутри редактора. Доступные значения: `true`, `false`. По умолчанию — `false`.",code:`
+        <CodeViewer
+          language="javascript"
+          lineWrapping
+          initialValue={
+            'const longLine = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua";'
+          }
+        />
+      `}),e.jsx(i,{title:"linter",description:"Источник диагностики CodeMirror: при передаче включаются gutter с метками и подсветка проблем. Для `json` дополнительно активен встроенный парсер JSON. Сообщения могут иметь severity `error` или `warning`.",code:`
+        function App() {
+          const codeViewerLinter = (view) => {
+            const text = view.state.doc.toString()
+            if (text.includes('TODO')) {
+              return [
+                {
+                  from: 0,
+                  to: text.length,
+                  message: 'Remove TODO',
+                  severity: 'warning',
+                },
+              ]
+            }
+            return []
+          }
+
+          return (
+            <CodeViewer
+              language="javascript"
+              initialValue={'// TODO: fix me'}
+              linter={codeViewerLinter}
+            />
+          )
+        }
+      `}),e.jsx(i,{title:"completions",description:"Расширение CodeMirror для автодополнения — передаётся готовый `Extension`, например через `jsonLanguage.data.of({ autocomplete: ... })`. Работает вместе с выбранным **language**.",setupCode:t,code:`
+        function App() {
+          const codeViewerCompletions = CodeViewer.LangJson.jsonLanguage.data.of({
+            autocomplete: (context) => ({
+              from: context.matchBefore(/\\w*/)?.from,
+              options: [{ label: 'hello', type: 'keyword' }],
+            }),
+          })
+
+          return (
+            <CodeViewer
+              language="json"
+              initialValue={completionSample}
+              completions={codeViewerCompletions}
+            />
+          )
+        }
+      `}),e.jsx(i,{title:"customLanguages",description:"Дополнительные языки подсветки: объект `{ [ключ]: Extension }`. Ключ используется как значение **language**, если для него нет встроенного расширения.",setupCode:t,code:`
+        function App() {
+          const myLanguage = CodeViewer.LangJson.json()
+
+          return (
+            <CodeViewer
+              language="myLang"
+              customLanguages={{ myLang: myLanguage }}
+              initialValue={customLanguageSample}
+            />
+          )
+        }
+      `}),e.jsx(i,{title:"onChange",description:"Колбэк при изменении текста: `(text, update) => void`, где `text` — текущее содержимое, `update` — объект обновления CodeMirror.",setupCode:t,code:`
+        function App() {
+          const [value, setValue] = React.useState(onChangeSample)
+
+          return (
+            <CodeViewer
+              language="javascript"
+              initialValue={value}
+              onChange={setValue}
+            />
+          )
+        }
+      `})]},"composition"),e.jsxs(o.TabPane,{tab:"Properties",children:[e.jsx(l,{of:p}),e.jsx(u,{components:j})]},"properties"),e.jsxs(o.TabPane,{tab:"Дизайн",children:[e.jsx(i,{title:"Компонент в Pixso",titleSize:"H5",description:""}),e.jsx(V,{rows:x(v)})]},"design"),e.jsx(o.TabPane,{tab:"Изменения",children:e.jsx(g,{component:"CodeViewer"})},"changelog")]})]})]})}function Co(r={}){const{wrapper:a}={...d(),...r.components};return a?e.jsx(a,{...r,children:e.jsx(n,{...r})}):n()}function m(r,a){throw new Error("Expected "+(a?"component":"object")+" `"+r+"` to be defined: you likely forgot to import, pass, or provide it.")}export{Co as default};
