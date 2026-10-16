@@ -1,0 +1,9 @@
+import{M as s}from"./iframe-81MZLAwA.js";import{e as c,g,c as m}from"./propPresentation--qHUuHxi.js";import{w as u}from"./withMeta-CZpsweCu.js";import{H as h}from"./HelpMessage-DWvNdbZo.js";import{s as M}from"./resolveDesignControls-CFhBuB_d.js";const y={designTokens:!0,useThemedHook:!0,unitTests:!1,screenshotTests:!1,migration:!1,apiTable:!0,storybook:!0,pixsoView:!0},S="Help message",f="Текст дополняющий различные поля ввода дополнительной информацией. Например валидационный текст",x="Вывод текстового значения или состояния UI-элементов",P="",b="",o={dod:y,component:S,description:f,usage:x,designLink:P,pixsoView:b},H=["error","warning","success","common"],T=["small","medium"],t=(p,d={})=>c(M[p],d),w={mode:"common",text:"some text",size:"small"},i={mode:t("mode",{options:[...H]}),text:{description:"Отображаемый текст",control:"text"},size:t("size",{options:[...T]})},k=g(i),l={argTypes:m(i),args:{...w,testId:"help-message-test-id",klId:"help-message-kl-id"},parameters:{badges:[s.stable,s.reviewedByDesign],docs:{page:u(o)},design:o.pixsoView}},_={title:"Hexa UI Components/HelpMessage",component:h,tags:["!autodocs"],includeStories:["Playground"],excludeStories:["helpMessageStorySettings"],...l},e={name:"Playground",parameters:{controls:{include:k,sort:"none"}}};var r,n,a;e.parameters={...e.parameters,docs:{...(r=e.parameters)==null?void 0:r.docs,source:{originalSource:`{
+  name: 'Playground',
+  parameters: {
+    controls: {
+      include: helpMessageControlsOrder,
+      sort: 'none'
+    }
+  }
+}`,...(a=(n=e.parameters)==null?void 0:n.docs)==null?void 0:a.source}}};const z=["helpMessageStorySettings","Playground"],v=Object.freeze(Object.defineProperty({__proto__:null,Playground:e,__namedExportsOrder:z,default:_,helpMessageStorySettings:l},Symbol.toStringTag,{value:"Module"}));export{v as H,l as h};
