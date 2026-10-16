@@ -1,0 +1,62 @@
+import{j as t,M as c,D as d}from"./blocks-CANkqe6X.js";import{useMDXComponents as x}from"./index-Bb0VZcor.js";import{D as S}from"./DocPageLayout-CSin2tY8.js";import{D as i,a as o,A as f}from"./AutodocArgsTable-nwwGuie7.js";import{C as k}from"./ComponentChangelog-CdmGa3k3.js";import{D as h}from"./DocPageHeader-D-GCmw9J.js";import{D as g,a as j}from"./propPresentation-CndodZqI.js";import{S as l}from"./iframe-CE3A2i_R.js";import{a as m,S as r}from"./Skeleton-DiSVtuiX.js";import{S as s}from"./Skeleton.stories-h7PHIyrc.js";import"./preload-helper-Dp1pzeXC.js";import"./index-BAqeFenB.js";import"./TextReducer-BWwC3ime.js";import"./SubComponents-CeRF_0XA.js";import"./TextWithTruncation-vwuJ8fKM.js";import"./ArrowDownSolid-2gKtvJFB.js";import"./ArrowRightSolid-DEyUkgj2.js";import"./Divider-BfYsgfay.js";import"./Badge-COlrkFgX.js";import"./type-CJd4Aj23.js";import"./colors-JBaSgu6R.js";import"./Indicator-CzmYw3rU.js";import"./Tabs-BsVWuoPt.js";import"./i18n-CHYSVHUS.js";import"./shouldForwardProp-Cdy-RLhZ.js";import"./FormLabel-BTPnuYAd.js";import"./Tag-CwGNHh5s.js";import"./index-KYV4nEoS.js";import"./omit-DXgDXInf.js";import"./wave-id3Y8ngN.js";import"./Group-CT1GLKPI.js";import"./useMergedState-CJ57ru4s.js";import"./KeyCode-c5NdJp32.js";import"./isEqual-BJj8FZs2.js";import"./index-BrIAEOLg.js";import"./addEventListener-CMvQXZgt.js";import"./Portal-BZtnLvEx.js";import"./regeneratorRuntime-CTHXUUGe.js";import"./focus-CQD7WjR7.js";import"./EllipsisOutlined-CKROqWM3.js";import"./useIntersectionChildren-81HwgwMr.js";import"./Button-DWAe4sGj.js";import"./Dropdown-DDTza_yl.js";import"./ArrowRight-CtiO8sz4.js";import"./Toggle-Bx9catjq.js";import"./AdditionalContent-MuEB1NF-.js";import"./HelpMessage-CGiJa2GT.js";import"./Loader-B-PrFUxA.js";import"./index-DeHYj0xS.js";import"./v4-BoP187Zn.js";import"./button-BXfcPuzR.js";import"./useTranslation-Df249MGx.js";import"./generateId-BXJELych.js";import"./Advertisement-DDdxlCNg.js";import"./Thread-hxgKNCi7.js";import"./index-DSCjRxXp.js";import"./ResizeInput-DbPEtr0p.js";import"./ToggleButton-C_yyCTZH.js";import"./imaskDateOptionsGenerator-B-gpxSk5.js";import"./input-CXZYXpvP.js";import"./index-Chjiymov.js";import"./Field-Di0ZVxXr.js";import"./Help-CypKvDy_.js";import"./Markdown-B8dK-0JV.js";import"./index-A0tpAMov.js";import"./Textbox-Bh1_eJmX.js";import"./useGlobalStyles-DemgArYT.js";import"./InputMasked-DJRwMJxo.js";import"./useThemedTextbox-DFiuUy0S.js";import"./typesHelpers-tpz7Of7L.js";import"./useClassNamedTextbox-Ceydhy0X.js";import"./InputNumber-pm1MHzRq.js";import"./index-Bma-jNZr.js";import"./SearchOutlined-C5ND5PMp.js";import"./InputPassword-DTGy24rF.js";import"./StatusOkSolid-BHaQF9M1.js";import"./IconResolver-D-DLfVil.js";import"./Placeholder-Cww9fqa_.js";import"./ServicesNav-5GDu8G_l.js";import"./ArrowRightMini-B7_v8cqS.js";import"./ArrowDown-ByfHMhmK.js";import"./Toolbar-DIsZhFRh.js";import"./useImmutableRef-D2wK4zIy.js";import"./Menu2-j8LTRpUc.js";import"./Settings21-DnxfNnRg.js";import"./IconSearch-CovRQ5CD.js";import"./Table-CzJfZLgC.js";import"./pickAttrs-BsfpNHHc.js";import"./Pagination-D7xnOnRM.js";import"./RightOutlined-Dp1V5yh5.js";import"./List-CHL_Pj4J.js";import"./iconUtil-okTrlXMH.js";import"./useForceUpdate-cso_XA1y.js";import"./Tree-CIAEXzM-.js";import"./index-D9iZAV-N.js";import"./index-x-4LxR_n.js";import"./Sider-ofXNfbZe.js";import"./index-rUbf6g01.js";import"./_getTag-fKWo0MhT.js";import"./scrollTo-BEkLZ1is.js";import"./Card-CTgaQntO.js";import"./Delete-DEf5tfAU.js";import"./useThemedScrollbar-DkiYCZ4m.js";import"./scrollbarCss-BkVWVVTh.js";import"./Radio-CzRYOx6O.js";import"./useId-CJZ66fF7.js";import"./Checkbox-DgJSahC_.js";import"./Pagination-B_A1NZtT.js";import"./Select-BT_77KsJ.js";import"./ExpandableText-x6z5OwfC.js";import"./Chip-DioSJ2L_.js";import"./Reload-BfhlEJ3X.js";import"./Search-CInNj1ab.js";import"./Modal-DuETpwIh.js";import"./PortalWrapper-DvFMGbR6.js";import"./StatusOkOutline-OdNgE3pF.js";import"./Sidebar-CfYCI0Ua.js";import"./CrossM-e2yul1Il.js";import"./RangePicker-BrVGY-9s.js";import"./RangeSeparator-BwLc3P6H.js";import"./WithGlobalStyles-B8Vd7N-9.js";import"./dateFns-DhC2lHKX.js";import"./useThemedPicker-dWvlEYRS.js";import"./Calendar-CgIHAxsW.js";import"./Grid-DcUXc50s.js";import"./SegmentedButton-D7Q38fHF.js";import"./Plus-C-VNyuat.js";import"./StatusWarningSolid-CdyciR9q.js";import"./ArrowRightSmall-hzC9cgQe.js";import"./Browser-BkY7pkgB.js";import"./Expand-BmafRuLD.js";import"./Bell-DqwV9G7K.js";import"./CodeCompare-CUjG-sal.js";import"./SettingsGear-B-7blicS.js";import"./ExpandAll-C5Q0nory.js";import"./CheckPoint-bZTuPkMi.js";import"./TreeNav-CCEZVHMj.js";import"./Tree-BQu26Q2s.js";import"./Copy-D-uUvP48.js";import"./Download2-DFUYo3N4.js";import"./Edit-ijEL2tAR.js";import"./StatusLevelMedium-BviPzy_m.js";import"./EngineeringStation-C7aetlyj.js";import"./FileItem-ChzdoD-m.js";import"./Heart-CsdcqumO.js";import"./Servers-BV3OQKQP.js";import"./NotificationService-BDTfy7yz.js";import"./Wrap-BdpZSiCw.js";import"./LockGroup-6e7hQpBe.js";import"./Menu3-UhB4wKh6.js";import"./Minus-CHAHQFP0.js";import"./Moon-CgP52G9f.js";import"./LicenseCard-BpFSWFpJ.js";import"./Status-CB0_1MlR.js";import"./ProgressBar-C5lI3LSg.js";import"./Menu-DRm0cJ07.js";import"./Submenu-ThEM8MTs.js";import"./PlusM-Crk_47Ai.js";import"./Printer-DcWzG9C6.js";import"./Server-Dyo1FTOG.js";import"./Settings-qMJ4had2.js";import"./TopNavigation-MNx_Swjb.js";import"./UserAccount-ClhTdq0s.js";import"./HorizontalNav-u5hst-74.js";import"./Youtube-CB4BV0TD.js";import"./AccordionPanel-BrFgJBUN.js";import"./Upload-2VMXfN3o.js";import"./UserGroup-DS7mV-_W.js";import"./index-yJADK0cs.js";import"./ToggleButtonGroup-NI7nRoWZ.js";import"./Uploader-xZRtb6DM.js";import"./CodeViewer-Jr5FnZmW.js";import"./StatusWarningSolid-C-EGrjOK.js";import"./TimeInput-BJNI79QI.js";import"./TagReductionGroup-CZs5fGgT.js";import"./Alert-3rK19rG-.js";import"./Anchor-Ioz7VyII.js";import"./Breadcrumbs-CO7tjnbQ.js";import"./DetailsPage-BlOagpYP.js";import"./FormTrigger-B9NNPdwW.js";import"./Gallery-COcU-Owh.js";import"./Scrollbar-BSPIejWr.js";import"./KeyValue-CSdhI7rV.js";import"./InformationCard-CoqSMDDB.js";import"./Label-8Rhd9mhD.js";import"./LoadingOverlay-DMxEwnKV.js";import"./Notification-BGC6KEbM.js";import"./PageHeader-DGKHXUWK.js";import"./Panel-aMPFTJ6S.js";import"./Placeholder-CTiJigIz.js";import"./QuickFilter-bUGBU-fa.js";import"./RangeTimeInput-KWAupHdj.js";import"./Repeater-C7e8f0sn.js";import"./SegmentedControl-D1nL1PFr.js";import"./Severity-JYvmg-Lz.js";import"./StatusCard-vgd4Ccln.js";import"./StatusOkSolid-BhuhYq7K.js";import"./TenantFilter-C87b8cfE.js";import"./basic-data-transfer.addon-DmblWRI1.js";import"./TextDiff-zUwumrTQ.js";import"./TreeSelect-MZEqyLae.js";import"./WeeklySchedule-D_EMMa_Y.js";import"./Wizard-Dr3Xnfql.js";import"./types-D1pYS17c.js";import"./types-CHQbqp6R.js";import"./index-z93Dd3wC.js";const z={size:{description:"Размер заглушки",type:"small (20px) | medium (24px) | large (32px) | flex"},flexWidth:{description:"Растягивать заглушку по ширине контейнера",type:"false | true"}};function n(e){return i||a("Tabs",!1),i.TabPane||a("Tabs.TabPane",!0),t.jsxs(t.Fragment,{children:[t.jsx(c,{of:s,name:"Skeleton Docs"}),`
+`,t.jsxs(S,{children:[t.jsx(h,{title:"Skeleton"}),t.jsxs(i,{defaultActiveKey:"description",children:[t.jsx(i.TabPane,{tab:"Описание",children:t.jsx(o,{description:`
+**Skeleton** — анимированная заглушка, обозначающая загрузку будущего содержимого
+
+**Skeleton** применяют в областях, где содержимое появится вскоре после загрузки: в карточках, формах, таблицах и виджетах. Подбирайте форму и размеры заглушек под будущую композицию, чтобы интерфейс сохранял структуру и не менялся резко при появлении данных.
+
+Используйте заглушки для предсказуемой загрузки контента, а для отображения состояния действия или ожидания короткой операции выбирайте соответствующие индикаторы Hexa UI.`})},"description"),t.jsxs(i.TabPane,{tab:"Структура",children:[t.jsx(o,{description:"**Skeleton** временно заменяет ещё не загруженный контент и помогает сохранить ожидаемую структуру интерфейса. Настраиваются **size** и **flexWidth**."}),t.jsx(o,{title:"size",description:"Задаёт размер заглушки. Доступны `small` высотой 20 px, `medium` высотой 24 px, `large` высотой 32 px и `flex` для произвольного размера.",code:`
+        <Skeleton size="small" />
+        <Skeleton size="medium" />
+        <Skeleton size="large" />
+        <Skeleton size="flex" style={{ height: 120 }} />
+      `}),t.jsx(o,{title:"flexWidth",description:"При значении `true` заглушка занимает доступную ширину контейнера и может растягиваться внутри flex-раскладки.",code:`
+        <div style={{ display: 'flex', width: 320 }}>
+          <Skeleton size="large" flexWidth />
+        </div>
+      `}),t.jsx(o,{title:"Шаблон заголовка",description:"Две заглушки для заголовка и короткой строки текста.",code:`
+        <SkeletonTemplate>
+          <Skeleton size="medium" />
+          <Skeleton size="small" />
+        </SkeletonTemplate>
+      `,scope:{Skeleton:r,SkeletonTemplate:m}}),t.jsx(o,{title:"Шаблон формы",description:"Последовательность заглушек для формы с полями разной ширины.",code:`
+        <SkeletonTemplate>
+          <Skeleton size="medium" />
+          <Skeleton size="small" />
+          <Skeleton size="large" flexWidth />
+          <Skeleton size="large" flexWidth />
+          <Skeleton size="large" flexWidth />
+          <Skeleton size="medium" />
+          <Skeleton size="large" flexWidth />
+          <Skeleton size="large" flexWidth />
+          <Skeleton size="large" flexWidth />
+        </SkeletonTemplate>
+      `,maxCodeLines:10,scope:{Skeleton:r,SkeletonTemplate:m}}),t.jsx(o,{title:"Шаблон виджета",description:"Компоновка для виджета с крупной областью и набором компактных элементов.",code:`
+        <SkeletonTemplate style={{ width: 568 }}>
+          <Space gap={16} direction="vertical">
+            <Skeleton size="flex" style={{ height: 188 }} />
+            <Space gap={8}>
+              <Skeleton size="flex" style={{ height: 20, width: 80 }} />
+              <Skeleton size="flex" style={{ height: 20, width: 80 }} />
+              <Skeleton size="flex" style={{ height: 20, width: 80 }} />
+              <Skeleton size="flex" style={{ height: 20, width: 80 }} />
+            </Space>
+          </Space>
+        </SkeletonTemplate>
+      `,maxCodeLines:10,scope:{Skeleton:r,SkeletonTemplate:m,Space:l}}),t.jsx(o,{title:"Шаблон таблицы",description:"Сетка заглушек для строк и ячеек таблицы.",code:`
+        <SkeletonTemplate style={{ width: 1018 }}>
+          <Space gap={8} direction="vertical">
+            {[...Array(12).keys()].map((row) => (
+              <Space gap={8} wrap="nowrap" key={row}>
+                {[...Array(5).keys()].map((cell) => (
+                  <Skeleton
+                    size="large"
+                    flexWidth
+                    key={cell}
+                    style={cell === 0 ? { width: 20, flex: 'none' } : {}}
+                  />
+                ))}
+              </Space>
+            ))}
+          </Space>
+        </SkeletonTemplate>
+      `,maxCodeLines:10,scope:{Skeleton:r,SkeletonTemplate:m,Space:l}})]},"composition"),t.jsxs(i.TabPane,{tab:"Properties",children:[t.jsx(d,{of:s}),t.jsx(f,{components:r})]},"properties"),t.jsxs(i.TabPane,{tab:"Дизайн",children:[t.jsx(o,{title:"Компонент в Pixso",titleSize:"H5",description:""}),t.jsx(g,{rows:j(z)})]},"design"),t.jsx(i.TabPane,{tab:"Изменения",children:t.jsx(k,{component:"Skeleton"})},"changelog")]})]})]})}function de(e={}){const{wrapper:p}={...x(),...e.components};return p?t.jsx(p,{...e,children:t.jsx(n,{...e})}):n()}function a(e,p){throw new Error("Expected "+(p?"component":"object")+" `"+e+"` to be defined: you likely forgot to import, pass, or provide it.")}export{de as default};
