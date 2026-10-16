@@ -73,6 +73,8 @@ export const UsersTable = () => {
 * окно по колонкам требует числовой ширины у всех видимых колонок (`resizingMode: 'scroll'`) и не включается
   при `stickyHeader`;
 * не совмещается с `useVT` и `pagination.virtualInfiniteScroll`.
+* подсветка совпадений поиска (`enableSearchHighlighting`) применяется только к строкам, отрисованным в момент поиска;
+  строки, появившиеся при прокрутке, не подсвечиваются.
 
 
 #### Filter props
