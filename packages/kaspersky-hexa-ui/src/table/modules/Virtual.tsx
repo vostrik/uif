@@ -1,16 +1,3 @@
-/**
- * Row virtualization for Table (`virtual` prop).
- *
- * How it works:
- * antd/rc-table keeps doing all of its work as usual — sorting, filtering, selection (including "select all"),
- * expandable and tree rows, onRow, rowClassName, column renders, drag and drop, etc. It still creates a React
- * element for every row, which is cheap. We only replace the `<tbody>` wrapper: it mounts just the rows that
- * are visible in the scroll container (plus overscan) and replaces the rest with two spacer rows of the right
- * height. Real row heights are measured after render, so rows may have any height.
- *
- * The scroll container is the nearest vertically scrollable ancestor (the window by default), so page scroll,
- * a scrollable parent and antd `scroll.y` all work, and the sticky header is not affected at all.
- */
 import {
   elementScroll,
   observeElementOffset,
