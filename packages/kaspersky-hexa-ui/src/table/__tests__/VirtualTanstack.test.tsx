@@ -3,7 +3,7 @@ import React, { ComponentType, useContext } from 'react'
 
 import { STICKY_HEADER_CLASS, StickyHeaderWrapper } from '../helpers/stickyHeader'
 import { ResizableColumnsContext } from '../helpers/stickyHeader/ResizableColumnsContext'
-import { VirtualTableContext } from '../helpers/virtual'
+import { VirtualTableContext } from '../helpers/virtual/VirtualTableContext'
 import { TableComponent } from '../modules'
 import { Virtual, VIRTUAL_SPACER_CLASS } from '../modules/Virtual'
 import { TestTable } from '../test-utils/TableTestingClass'
