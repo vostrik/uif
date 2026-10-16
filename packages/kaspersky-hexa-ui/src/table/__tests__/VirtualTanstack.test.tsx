@@ -1,10 +1,10 @@
 import { act, render } from '@testing-library/react'
 import React, { ComponentType } from 'react'
 
-import { STICKY_HEADER_CLASS, StickyHeaderWrapper, VirtualStickyHeaderWrapper } from '../helpers/stickyHeader'
+import { STICKY_HEADER_CLASS, StickyHeaderWrapper, VirtualTanstackStickyHeaderWrapper } from '../helpers/stickyHeader'
 import { ResizableColumnsContext } from '../helpers/stickyHeader/ResizableColumnsContext'
 import { TableComponent } from '../modules'
-import { VIRTUAL_SPACER_CLASS, VirtualTanstack } from '../modules/VirtualTanstack'
+import { VIRTUAL_TANSTACK_SPACER_CLASS, VirtualTanstack } from '../modules/VirtualTanstack'
 import { TestTable } from '../test-utils/TableTestingClass'
 import { ITableProps, TableColumn, TableRecord } from '../types'
 
@@ -60,10 +60,10 @@ afterEach(() => {
 
 /** Renders the VirtualTanstack module over a probe component that records what the module passed down */
 const renderVirtualModule = (props: Partial<ITableProps>) => {
-  const received: { components?: ITableProps['components'], isVirtual?: boolean, hasLegacyFlag?: boolean } = {}
+  const received: { components?: ITableProps['components'], isVirtualTanstack?: boolean, hasLegacyFlag?: boolean } = {}
   const Probe = ((probeProps: ITableProps) => {
     received.components = probeProps.components
-    received.isVirtual = probeProps.__EXPERIMENTAL__VIRTUAL_TANSTACK
+    received.isVirtualTanstack = probeProps.__EXPERIMENTAL__VIRTUAL_TANSTACK
     received.hasLegacyFlag = '__EXPERIMENTAL__VIRTUAL' in probeProps
     return null
   }) as TableComponent
@@ -141,9 +141,9 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
     })
   })
 
-  describe('StickyHeaderWrapper with isVirtual', () => {
+  describe('StickyHeaderWrapper with isVirtualTanstack', () => {
     it('repeats the body column structure and copies the body column widths', () => {
-      const { container } = renderStickyHeader(true, VirtualStickyHeaderWrapper)
+      const { container } = renderStickyHeader(true, VirtualTanstackStickyHeaderWrapper)
 
       const helperCells = container.querySelectorAll(`.${STICKY_HEADER_CLASS} > table > thead > tr:first-child > th`)
       expect(helperCells).toHaveLength(4)
@@ -163,9 +163,9 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       expect(resizeObservers.some(observer => observer.observe.mock.calls.length > 0)).toBe(true)
     })
 
-    it('keeps the default render with isVirtual={false}', () => {
-      const NotVirtualWrapper: typeof StickyHeaderWrapper = props => <StickyHeaderWrapper {...props} isVirtual={false} />
-      const { container } = renderStickyHeader(true, NotVirtualWrapper)
+    it('keeps the default render with isVirtualTanstack={false}', () => {
+      const NotVirtualTanstackWrapper: typeof StickyHeaderWrapper = props => <StickyHeaderWrapper {...props} isVirtualTanstack={false} />
+      const { container } = renderStickyHeader(true, NotVirtualTanstackWrapper)
 
       const helperCells = container.querySelectorAll(`.${STICKY_HEADER_CLASS} > table > thead > tr:first-child > th`)
       expect(helperCells).toHaveLength(3)
@@ -179,14 +179,14 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       const components = { body: { row: Row } }
       const received = renderVirtualModule({ components })
 
-      expect(received.isVirtual).toBe(false)
+      expect(received.isVirtualTanstack).toBe(false)
       expect(received.components).toBe(components)
     })
 
     it('passes __EXPERIMENTAL__VIRTUAL_TANSTACK and replaces components.body.wrapper with the flag', () => {
       const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL_TANSTACK: true })
 
-      expect(received.isVirtual).toBe(true)
+      expect(received.isVirtualTanstack).toBe(true)
       const wrapper = (received.components?.body as { wrapper?: unknown })?.wrapper
       expect(typeof wrapper).toBe('function')
     })
@@ -194,7 +194,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
     it('treats the legacy __EXPERIMENTAL__VIRTUAL flag the same way and does not pass it down', () => {
       const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL: true })
 
-      expect(received.isVirtual).toBe(true)
+      expect(received.isVirtualTanstack).toBe(true)
       expect(received.hasLegacyFlag).toBe(false)
       expect(typeof (received.components?.body as { wrapper?: unknown })?.wrapper).toBe('function')
     })
@@ -213,7 +213,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       const components = { body: customBody }
       const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL_TANSTACK: true, components: components as ITableProps['components'] })
 
-      expect(received.isVirtual).toBe(false)
+      expect(received.isVirtualTanstack).toBe(false)
       expect(received.components).toBe(components)
     })
 
@@ -233,7 +233,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       const tbody = container.querySelector('tbody[data-base-wrapper]')
       expect(tbody).toBeTruthy()
       expect(tbody!.querySelector('.placeholder')).toBeTruthy()
-      expect(tbody!.querySelector(`.${VIRTUAL_SPACER_CLASS}`)).toBeNull()
+      expect(tbody!.querySelector(`.${VIRTUAL_TANSTACK_SPACER_CLASS}`)).toBeNull()
       expect((tbody as HTMLElement).style.overflowAnchor).toBe('')
     })
   })
@@ -246,7 +246,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       const tbody = container.querySelector('.ant-table-tbody')
       expect(tbody).toBeTruthy()
       expect(tbody!.querySelector('.ant-table-placeholder')).toBeTruthy()
-      expect(tbody!.querySelector(`.${VIRTUAL_SPACER_CLASS}`)).toBeNull()
+      expect(tbody!.querySelector(`.${VIRTUAL_TANSTACK_SPACER_CLASS}`)).toBeNull()
       expect(tbody!.querySelectorAll('tr[data-row-key]')).toHaveLength(0)
     })
 
@@ -262,7 +262,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       expect(rows.length).toBeGreaterThan(0)
       expect(rows.length).toBeLessThan(100)
       expect(rows[0].getAttribute('data-row-key')).toBe('0')
-      expect(tbody.querySelector(`.${VIRTUAL_SPACER_CLASS}`)).toBeTruthy()
+      expect(tbody.querySelector(`.${VIRTUAL_TANSTACK_SPACER_CLASS}`)).toBeTruthy()
       expect(resizeObservers.some(observer => observer.observe.mock.calls.some(([node]) => node === tbody))).toBe(true)
     })
 
@@ -272,7 +272,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
 
       const tbody = container.querySelector('.ant-table-tbody')!
       expect(tbody.querySelectorAll('tr[data-row-key]')).toHaveLength(150)
-      expect(tbody.querySelector(`.${VIRTUAL_SPACER_CLASS}`)).toBeNull()
+      expect(tbody.querySelector(`.${VIRTUAL_TANSTACK_SPACER_CLASS}`)).toBeNull()
     })
   })
 })
