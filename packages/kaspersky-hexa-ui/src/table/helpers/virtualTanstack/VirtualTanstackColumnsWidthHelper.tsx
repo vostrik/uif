@@ -1,5 +1,5 @@
 import Table from 'antd/es/table'
-import React, { RefObject, useLayoutEffect, useState } from 'react'
+import React, { RefObject, useEffect, useLayoutEffect, useState } from 'react'
 
 import { isColumnVisible } from '../common'
 import { useResizableColumnsContext } from '../stickyHeader/ResizableColumnsContext'
@@ -60,12 +60,15 @@ export function VirtualTanstackColumnsWidthHelper ({
   const { columns, hasRowSelection } = useResizableColumnsContext()
   const [slots, setSlots] = useState<ColumnSlot[] | null>(null)
 
-  useLayoutEffect(() => {
+  const measureSlots = () => {
     const bodyTable = bodyTheadRef.current?.closest('table')
     if (!bodyTable) return
     const bodySlots = getBodyColumnSlots(bodyTable)
     if (!isSameSlots(slots, bodySlots)) setSlots(bodySlots)
-  })
+  }
+  useLayoutEffect(measureSlots)
+  // on mount the parent thead ref is attached after this component's layout effects: measure once refs are set
+  useEffect(measureSlots, [])
 
   useLayoutEffect(() => {
     const bodyThead = bodyTheadRef.current
