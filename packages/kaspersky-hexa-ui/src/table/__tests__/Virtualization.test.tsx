@@ -507,9 +507,7 @@ describe('Virtualization — a tree whose roots hold thousands of rows', () => {
    * afterwards, which is why it went unnoticed — it cost 1.7 seconds of blocked main thread on a
    * root of five thousand. Counting what gets built is the only way to see it from a test.
    */
-  // Needs the useExpandColumnName change from the internal repo (expandable config in useMemo, not in an effect):
-  // without it the collapse frame still sees the root as open. Not ported yet: it changes every table, not only virtual
-  it.skip('does not build the rows it is closing', () => {
+  it('does not build the rows it is closing', () => {
     const table = renderTree()
     table.rows.clickExpandIcon('root-0')
 
