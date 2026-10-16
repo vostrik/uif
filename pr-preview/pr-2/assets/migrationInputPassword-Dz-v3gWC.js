@@ -1,0 +1,1 @@
+const n="InputPassword",o=[],a=[],e=[{prop:"onChange",changes:"no change"},{prop:"error",changes:"no change"},{prop:"theme",changes:"add as new prop"},{prop:"klId",changes:"add as new prop"},{prop:"value",changes:"no change"}],p="",s={component:n,"hexa-ui":"/docs/hexa-ui-components-input",v3:o,v5:a,common:e,pixsoView:p};export{s as M};

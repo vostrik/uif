@@ -1,0 +1,14 @@
+import{M as s,R as a}from"./iframe-DXVY_al-.js";import{e as m,g as S,c as f}from"./propPresentation-DzyQPo2A.js";import{w as y}from"./withMeta-CBaPUhSC.js";import{S as c}from"./Select-CWiGZ4W9.js";import{s as b}from"./resolveDesignControls-CFhBuB_d.js";import{v as h}from"./typesHelpers-tpz7Of7L.js";const P={designTokens:!0,useThemedHook:!0,unitTests:!0,screenshotTests:!1,migration:!0,apiTable:!0,storybook:!0,designLink:!0,pixsoView:!0},v="Select",k="В качестве основы используется AntdSelect из библиотеки Antd.",w="Компонент, который позволяет выбрать значение из вариантов",x="",T="",n={dod:P,component:v,description:k,usage:w,designLink:x,pixsoView:T},r=(t,e={})=>m(b[t],e),O={validationStatus:"default",placeholder:"Select",disabled:!1,readOnly:!1,allowClear:!1,showSearch:!1,loading:!1},p={validationStatus:{control:"radio",description:"Статус валидации",options:[...h]},disabled:r("disabled"),readOnly:{control:"boolean",description:"Режим только для чтения"},allowClear:{control:"boolean",description:"Показать кнопку сброса значения"},showSearch:{control:"boolean",description:"Включить поиск в выпадающем списке"},loading:r("loading"),placeholder:{control:"text",description:"Плейсхолдер"}},g=["This is a looooong long tag content that should be truncated on maxChars prop.","Moscow","Saint Petersburg","Novosibirsk","Yekaterinburg","Kazan","Omsk","Samara","Rostov","Ufa","Krasnoyarsk","Voronezh","Perm","Volgograd","Krasnodar","Saratov","Tyumen","Tolyatti","Izhevsk","Barnaul"].map((t,e)=>({label:t,value:e+1,...e%3===0?e%6===0?{description:`long long long long long description default text #${e+1}`}:{description:`description default text #${e+1}`}:{}})),u={argTypes:f(p),args:{...O,options:g,testId:"select-test-id",klId:"select-kl-id",dropdownMaxHeight:256,usePortal:!0},parameters:{badges:[s.stable,s.reviewedByDesign],docs:{page:y(n)},design:n.pixsoView}},C={title:"Hexa UI Components/Select",component:c,tags:["!autodocs"],includeStories:["Playground"],excludeStories:["selectStorySettings","selectOptions"],...u},o={name:"Playground",render:t=>a.createElement("div",{style:{maxWidth:300}},a.createElement(c,{...t})),parameters:{controls:{include:S(p),sort:"none"}}};var l,i,d;o.parameters={...o.parameters,docs:{...(l=o.parameters)==null?void 0:l.docs,source:{originalSource:`{
+  name: 'Playground',
+  render: args => <div style={{
+    maxWidth: 300
+  }}>
+      <SelectComponent {...args} />
+    </div>,
+  parameters: {
+    controls: {
+      include: getControlsInclude(selectPropPresentation),
+      sort: 'none'
+    }
+  }
+}`,...(d=(i=o.parameters)==null?void 0:i.docs)==null?void 0:d.source}}};const I=["selectOptions","selectStorySettings","Playground"],H=Object.freeze(Object.defineProperty({__proto__:null,Playground:o,__namedExportsOrder:I,default:C,selectOptions:g,selectStorySettings:u},Symbol.toStringTag,{value:"Module"}));export{H as S,u as a,g as s};

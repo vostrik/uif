@@ -1,0 +1,1 @@
+const s={designTokens:!1,useThemedHook:!1,unitTests:!1,screenshotTests:!1,migration:!1,apiTable:!1,storybook:!0,inBuilder:"Используется под названием «Таблица»"},e="Table",o="Компонент-контейнер для группы команд или элементов управления. ",t="",n="",a="",i={dod:s,component:e,description:o,usage:t,designLink:n,pixsoView:a};export{i as M};
