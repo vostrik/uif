@@ -26,6 +26,7 @@
   "include": [
     "./src/**/*",
     "./tests/**/*",
+    "./e2e/**/*",
     "./design-system/**/*",
     "./helpers/**/*",
     "./docs",

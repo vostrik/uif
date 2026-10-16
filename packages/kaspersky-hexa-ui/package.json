@@ -53,6 +53,7 @@
     "test": "npm run lint && jest --transformIgnorePatterns --maxWorkers=1 --forceExit --logHeapUsage",
     "test:only": "jest --transformIgnorePatterns --maxWorkers=1 --forceExit --logHeapUsage",
     "test:watch": "jest --watch",
+    "test:e2e": "playwright test",
     "test:format:mdx": "node --test tools/format-mdx-doc.test.mjs",
     "format:mdx": "node tools/format-mdx-doc.mjs",
     "format:mdx:check": "node tools/format-mdx-doc.mjs --check"
