@@ -534,6 +534,6 @@ export type ITableProps<T extends TableRecord = TableRecord> = Omit<
 
   /** Experimental flag to enable group selection. Not ready to use in production. Group selection works only if builtInRowSelection is set to true */
   __EXPERIMENTAL__GROUP__SELECTION?: boolean
-  /** @deprecated Use `virtual` instead */
+  /** Experimental flag to enable virtualization. Not ready to use in production */
   __EXPERIMENTAL__VIRTUAL?: boolean
 } & TestingProps
