@@ -1,11 +1,10 @@
 import { act, render } from '@testing-library/react'
-import React, { ComponentType, useContext } from 'react'
+import React, { ComponentType } from 'react'
 
-import { STICKY_HEADER_CLASS, StickyHeaderWrapper } from '../helpers/stickyHeader'
+import { STICKY_HEADER_CLASS, StickyHeaderWrapper, VirtualStickyHeaderWrapper } from '../helpers/stickyHeader'
 import { ResizableColumnsContext } from '../helpers/stickyHeader/ResizableColumnsContext'
-import { VirtualTableContext } from '../helpers/virtual/VirtualTableContext'
 import { TableComponent } from '../modules'
-import { Virtual, VIRTUAL_SPACER_CLASS } from '../modules/Virtual'
+import { VIRTUAL_SPACER_CLASS, VirtualTanstack } from '../modules/Virtual'
 import { TestTable } from '../test-utils/TableTestingClass'
 import { ITableProps, TableColumn, TableRecord } from '../types'
 
@@ -59,47 +58,45 @@ afterEach(() => {
   Element.prototype.getBoundingClientRect = originalGetBoundingClientRect
 })
 
-/** Renders the Virtual module over a probe component that records what the module passed down */
+/** Renders the VirtualTanstack module over a probe component that records what the module passed down */
 const renderVirtualModule = (props: Partial<ITableProps>) => {
-  const received: { components?: ITableProps['components'], isVirtual?: boolean } = {}
+  const received: { components?: ITableProps['components'], isVirtual?: boolean, hasLegacyFlag?: boolean } = {}
   const Probe = ((probeProps: ITableProps) => {
     received.components = probeProps.components
-    received.isVirtual = useContext(VirtualTableContext)
+    received.isVirtual = probeProps.__EXPERIMENTAL__VIRTUAL_TANSTACK
+    received.hasLegacyFlag = '__EXPERIMENTAL__VIRTUAL' in probeProps
     return null
   }) as TableComponent
-  const VirtualProbe = Virtual(Probe)
+  const VirtualProbe = VirtualTanstack(Probe)
   render(<VirtualProbe {...props as ITableProps} />)
   return received
 }
 
 describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
+  /** Body table with selection, expand and two data columns, as antd renders it */
+  const renderStickyHeader = (hasRowSelection: boolean, Wrapper: typeof StickyHeaderWrapper = StickyHeaderWrapper) => render(
+    <div className={STICKY_HEADER_CLASS}>
+      <div className="ant-table" />
+      <table>
+        <colgroup>
+          <col className="ant-table-selection-col" />
+          <col className="ant-table-expand-icon-col" />
+          <col />
+          <col />
+        </colgroup>
+        <ResizableColumnsContext.Provider value={{ columns, hasRowSelection, setOverflow: () => {}, setColumns: () => {} }}>
+          <Wrapper className="sticky-thead">
+            <tr><th>Name</th><th>Description</th></tr>
+          </Wrapper>
+        </ResizableColumnsContext.Provider>
+        <tbody><tr><td /></tr></tbody>
+      </table>
+    </div>
+  )
+
   describe('StickyHeaderWrapper without the flag', () => {
-    const renderStickyHeader = (hasRowSelection: boolean) => {
-      let isVirtual: boolean | undefined
-      const ContextProbe = () => {
-        isVirtual = useContext(VirtualTableContext)
-        return null
-      }
-      const { container } = render(
-        <div className={STICKY_HEADER_CLASS}>
-          <div className="ant-table" />
-          <table>
-            <ResizableColumnsContext.Provider value={{ columns, hasRowSelection, setOverflow: () => {}, setColumns: () => {} }}>
-              <StickyHeaderWrapper className="sticky-thead">
-                <tr><th>Name</th><th>Description</th></tr>
-              </StickyHeaderWrapper>
-            </ResizableColumnsContext.Provider>
-            <tbody><tr><td><ContextProbe /></td></tr></tbody>
-          </table>
-        </div>
-      )
-      return { container, isVirtual }
-    }
-
     it('renders the helper row and the colgroup from row selection and visible columns', () => {
-      const { container, isVirtual } = renderStickyHeader(true)
-
-      expect(isVirtual).toBe(false)
+      const { container } = renderStickyHeader(true)
 
       const helperCells = container.querySelectorAll(`.${STICKY_HEADER_CLASS} > table > thead > tr:first-child > th`)
       expect(helperCells).toHaveLength(3)
@@ -118,6 +115,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       expect((cols[2] as HTMLElement).style.width).toBe('300px')
       // without the flag the header widths are not copied from the body
       expect(portalTable!.style.tableLayout).toBe('')
+      expect(resizeObservers).toHaveLength(0)
     })
 
     it('omits the selection column without row selection', () => {
@@ -143,6 +141,38 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
     })
   })
 
+  describe('StickyHeaderWrapper with isVirtual', () => {
+    it('repeats the body column structure and copies the body column widths', () => {
+      const { container } = renderStickyHeader(true, VirtualStickyHeaderWrapper)
+
+      const helperCells = container.querySelectorAll(`.${STICKY_HEADER_CLASS} > table > thead > tr:first-child > th`)
+      expect(helperCells).toHaveLength(4)
+      expect(helperCells[0]).toHaveClass('ant-table-selection-column')
+      expect(helperCells[1]).toHaveClass('ant-table-expand-icon-column')
+      expect((helperCells[2] as HTMLElement).style.width).toBe('200px')
+      expect((helperCells[3] as HTMLElement).style.width).toBe('300px')
+
+      const portalTable = container.querySelector(`.${STICKY_HEADER_CLASS} .ant-table > table`) as HTMLTableElement
+      const cols = portalTable.querySelectorAll('colgroup > col')
+      expect(cols).toHaveLength(4)
+      expect(cols[0]).toHaveClass('ant-table-selection-col')
+      expect(cols[1]).toHaveClass('ant-table-expand-icon-col')
+      // widths come from the body columns (getBoundingClientRect is mocked to 100px)
+      expect(portalTable.style.tableLayout).toBe('fixed')
+      cols.forEach(col => expect((col as HTMLElement).style.width).toBe('100px'))
+      expect(resizeObservers.some(observer => observer.observe.mock.calls.length > 0)).toBe(true)
+    })
+
+    it('keeps the default render with isVirtual={false}', () => {
+      const NotVirtualWrapper: typeof StickyHeaderWrapper = props => <StickyHeaderWrapper {...props} isVirtual={false} />
+      const { container } = renderStickyHeader(true, NotVirtualWrapper)
+
+      const helperCells = container.querySelectorAll(`.${STICKY_HEADER_CLASS} > table > thead > tr:first-child > th`)
+      expect(helperCells).toHaveLength(3)
+      expect(helperCells[1]).not.toHaveClass('ant-table-expand-icon-column')
+    })
+  })
+
   describe('Virtual module', () => {
     it('does nothing without the flag', () => {
       const Row = (props: object) => <tr {...props} />
@@ -153,12 +183,20 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       expect(received.components).toBe(components)
     })
 
-    it('provides the context and replaces components.body.wrapper with the flag', () => {
+    it('passes __EXPERIMENTAL__VIRTUAL_TANSTACK and replaces components.body.wrapper with the flag', () => {
       const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL_TANSTACK: true })
 
       expect(received.isVirtual).toBe(true)
       const wrapper = (received.components?.body as { wrapper?: unknown })?.wrapper
       expect(typeof wrapper).toBe('function')
+    })
+
+    it('treats the legacy __EXPERIMENTAL__VIRTUAL flag the same way and does not pass it down', () => {
+      const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL: true })
+
+      expect(received.isVirtual).toBe(true)
+      expect(received.hasLegacyFlag).toBe(false)
+      expect(typeof (received.components?.body as { wrapper?: unknown })?.wrapper).toBe('function')
     })
 
     it('keeps the other body components', () => {
@@ -170,7 +208,7 @@ describe('Table __EXPERIMENTAL__VIRTUAL_TANSTACK', () => {
       expect(typeof body.wrapper).toBe('function')
     })
 
-    it('keeps a custom body renderer (useVT) and does not provide the context', () => {
+    it('keeps a custom body renderer (useVT) and passes __EXPERIMENTAL__VIRTUAL_TANSTACK=false', () => {
       const customBody = () => null
       const components = { body: customBody }
       const received = renderVirtualModule({ __EXPERIMENTAL__VIRTUAL_TANSTACK: true, components: components as ITableProps['components'] })
