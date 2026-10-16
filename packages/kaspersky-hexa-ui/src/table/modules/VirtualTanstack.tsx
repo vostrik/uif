@@ -141,10 +141,15 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
 
     const hasRows = rows.length > 0
 
-    // Find the scroll container when rows change (the spacers already give the body its full height)
-    useLayoutEffect(() => {
+    // The scroll container can change when the body height changes: e.g. scroll.y starts to scroll only after
+    // real row heights replace the estimated ones. setState with the same element is a no-op
+    const updateScrollElement = () => {
       if (topSpacerRef.current) setScrollElement(getScrollParent(topSpacerRef.current))
-    }, [rows.length])
+    }
+    const updateScrollElementRef = useRef(updateScrollElement)
+    updateScrollElementRef.current = updateScrollElement
+
+    useLayoutEffect(updateScrollElement, [rows.length])
 
     // After every render: where rows start inside the scroll container (toolbar, header... above) and row heights
     useLayoutEffect(() => {
@@ -156,10 +161,14 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
     })
 
     // Row content can change without a render (images, fonts, column resize) — remeasure on body resize
+    // and check the scroll container again
     useLayoutEffect(() => {
       const tbody = topSpacerRef.current?.parentElement
       if (!tbody) return
-      const observer = new ResizeObserver(() => measureRef.current())
+      const observer = new ResizeObserver(() => {
+        measureRef.current()
+        updateScrollElementRef.current()
+      })
       observer.observe(tbody)
       return () => observer.disconnect()
     }, [hasRows])
