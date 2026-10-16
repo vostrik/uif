@@ -10,7 +10,7 @@ import {
   TableCssProps
 } from '../../tableCss'
 import { findParentForClassName, isColumnVisible } from '../common'
-import { renderVirtualColumnsWidthHelper, useStickyHeaderBodySync } from '../virtual/useStickyHeaderBodySync'
+import { renderVirtualTanstackColumnsWidthHelper, useStickyHeaderBodySync } from '../virtualTanstack/useStickyHeaderBodySync'
 
 import { useResizableColumnsContext } from './ResizableColumnsContext'
 
@@ -47,10 +47,10 @@ export const TableStickyHeader = styled.div.withConfig({
   }
 `
 
-export function StickyHeaderWrapper ({ children, className, isVirtual }: {
+export function StickyHeaderWrapper ({ children, className, isVirtualTanstack }: {
   children: React.ReactNode,
   className: string,
-  isVirtual?: boolean
+  isVirtualTanstack?: boolean
 }) {
   const portalRef = useRef<HTMLTableElement | null>(null)
   if (!portalRef.current) {
@@ -58,7 +58,7 @@ export function StickyHeaderWrapper ({ children, className, isVirtual }: {
   }
   const theadRef = useRef<HTMLTableSectionElement>(null)
   const { columns, hasRowSelection } = useResizableColumnsContext()
-  const virtualColumnSlots = useStickyHeaderBodySync({ isVirtual, theadRef, portalRef, columns })
+  const virtualTanstackColumnSlots = useStickyHeaderBodySync({ isVirtualTanstack, theadRef, portalRef, columns })
 
   useEffect(() => {
     if (portalRef.current && theadRef.current) {
@@ -79,8 +79,8 @@ export function StickyHeaderWrapper ({ children, className, isVirtual }: {
   }, [])
 
   function renderColumnsWidthHelper (Tag: React.ElementType, classname: string) {
-    if (isVirtual && virtualColumnSlots) {
-      return renderVirtualColumnsWidthHelper(Tag, classname, virtualColumnSlots, columns)
+    if (isVirtualTanstack && virtualTanstackColumnSlots) {
+      return renderVirtualTanstackColumnsWidthHelper(Tag, classname, virtualTanstackColumnSlots, columns)
     }
 
     return (
@@ -113,6 +113,6 @@ export function StickyHeaderWrapper ({ children, className, isVirtual }: {
   )
 }
 
-export const VirtualStickyHeaderWrapper = (props: { children: React.ReactNode, className: string }) => (
-  <StickyHeaderWrapper {...props} isVirtual />
+export const VirtualTanstackStickyHeaderWrapper = (props: { children: React.ReactNode, className: string }) => (
+  <StickyHeaderWrapper {...props} isVirtualTanstack />
 )

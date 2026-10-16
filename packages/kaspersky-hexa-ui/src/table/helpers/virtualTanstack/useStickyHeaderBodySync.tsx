@@ -42,7 +42,7 @@ const syncHeaderColumnWidths = (bodyTable: HTMLTableElement, headerTable: HTMLTa
 }
 
 type UseStickyHeaderBodySyncParams = {
-  isVirtual?: boolean,
+  isVirtualTanstack?: boolean,
   theadRef: RefObject<HTMLTableSectionElement>,
   portalRef: RefObject<HTMLTableElement>,
   columns: TableColumn[]
@@ -53,12 +53,12 @@ type UseStickyHeaderBodySyncParams = {
  * columns) and copies the real body column widths, so it stays aligned on resize.
  * Returns the body column structure, or null until it is measured.
  */
-export const useStickyHeaderBodySync = ({ isVirtual, theadRef, portalRef, columns }: UseStickyHeaderBodySyncParams) => {
+export const useStickyHeaderBodySync = ({ isVirtualTanstack, theadRef, portalRef, columns }: UseStickyHeaderBodySyncParams) => {
   const [slots, setSlots] = useState<ColumnSlot[] | null>(null)
 
   useLayoutEffect(() => {
     const bodyTable = theadRef.current?.closest('table')
-    if (!isVirtual || !bodyTable) return
+    if (!isVirtualTanstack || !bodyTable) return
     const bodySlots = getBodyColumnSlots(bodyTable)
     if (!isSameSlots(slots, bodySlots)) setSlots(bodySlots)
   })
@@ -66,7 +66,7 @@ export const useStickyHeaderBodySync = ({ isVirtual, theadRef, portalRef, column
   useLayoutEffect(() => {
     const bodyTable = theadRef.current?.closest('table')
     const headerTable = portalRef.current
-    if (!isVirtual || !bodyTable || !headerTable || !theadRef.current) return
+    if (!isVirtualTanstack || !bodyTable || !headerTable || !theadRef.current) return
 
     const sync = () => syncHeaderColumnWidths(bodyTable, headerTable)
     sync()
@@ -75,13 +75,13 @@ export const useStickyHeaderBodySync = ({ isVirtual, theadRef, portalRef, column
     // helper cells span whole columns: they resize when a column width changes inside a table of the same width
     theadRef.current.querySelectorAll('th').forEach(th => observer.observe(th))
     return () => observer.disconnect()
-  }, [isVirtual, slots, columns])
+  }, [isVirtualTanstack, slots, columns])
 
-  return isVirtual ? slots : null
+  return isVirtualTanstack ? slots : null
 }
 
 /** Helper row cells / header cols in the body column structure */
-export const renderVirtualColumnsWidthHelper = (
+export const renderVirtualTanstackColumnsWidthHelper = (
   Tag: ElementType,
   classname: string,
   slots: ColumnSlot[],
