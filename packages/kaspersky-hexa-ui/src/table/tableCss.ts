@@ -171,7 +171,7 @@ export const tableCss = css<TableCssProps>`
       border-bottom: 1px solid var(--border--neutral--bold);
     }
 
-    .ant-table-tbody > tr:not(.ant-table-measure-row):after {
+    .ant-table-tbody > tr:not(.ant-table-measure-row):not(.hexa-ui-table-virtual-tanstack-spacer):after {
       border-bottom: 1px solid var(--border--neutral--medium);
     }
 

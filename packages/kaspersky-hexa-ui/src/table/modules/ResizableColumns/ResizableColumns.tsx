@@ -12,12 +12,8 @@ import { TableComponent } from '..'
 import { ITableProps, TableColumn, TableRecord } from '../..'
 import { isColumnReadonly, isColumnVisible } from '../../helpers/common'
 import { getPersistentStorageValue, updatePersistentStorage } from '../../helpers/persistentStorage'
-import {
-  ResizableColumnsContext,
-  STICKY_HEADER_CLASS,
-  StickyHeaderWrapper,
-  VirtualTanstackStickyHeaderWrapper
-} from '../../helpers/stickyHeader'
+import { ResizableColumnsContext, STICKY_HEADER_CLASS, StickyHeaderWrapper } from '../../helpers/stickyHeader'
+import { VirtualTanstackStickyHeaderWrapper } from '../../helpers/virtualTanstack/VirtualTanstackStickyHeaderWrapper'
 import { ResizableHeaderCellProps, SetColumns } from './types'
 
 import { addWidthFromStorage, applyResizingMode, selectAutoResizingMode, resizeColumns } from './helpers'
@@ -283,7 +279,7 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
    */
   useUpdateEffect(() => {
     let interval: any
-    // with virtualization the sticky header copies body column widths itself (useStickyHeaderBodySync)
+    // with virtualization the sticky header copies body column widths itself (VirtualTanstackStickyHeaderWrapper)
     if (props.stickyHeader !== undefined && isTableVisible && !isVirtualTanstack) {
       interval = setInterval(() => {
         const tableWrapper = siblingRef.current!.parentNode!

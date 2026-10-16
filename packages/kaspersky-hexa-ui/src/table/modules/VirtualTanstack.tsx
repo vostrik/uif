@@ -14,6 +14,7 @@ import React, {
   isValidElement,
   ReactElement,
   ReactNode,
+  useCallback,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -25,6 +26,7 @@ import { TableRecord } from '../types'
 import { TableComponent } from './index'
 
 const ESTIMATED_ROW_HEIGHT = 40
+const estimateSize = () => ESTIMATED_ROW_HEIGHT
 const OVERSCAN = 10
 export const VIRTUAL_TANSTACK_SPACER_CLASS = 'hexa-ui-table-virtual-tanstack-spacer'
 
@@ -88,6 +90,9 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
       return [bodyRows, otherRows]
     }, [children])
 
+    // stable while rows are the same: a new function makes the virtualizer recompute all measurements
+    const getItemKey = useCallback((index: number) => rows[index]?.key ?? index, [rows])
+
     const topSpacerRef = useRef<HTMLTableRowElement>(null)
     const [scrollElement, setScrollElement] = useState<ScrollElement | null>(null)
     const [scrollMargin, setScrollMargin] = useState(0)
@@ -98,8 +103,8 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
       enabled: Boolean(scrollElement), // starts after the scroll container is found
       getScrollElement: () => scrollElement as Element | null,
       initialOffset: () => getScrollOffset(scrollElement),
-      getItemKey: index => rows[index]?.key ?? index,
-      estimateSize: () => ESTIMATED_ROW_HEIGHT,
+      getItemKey,
+      estimateSize,
       overscan: OVERSCAN,
       scrollMargin,
       observeElementRect: (instance, cb) => {
@@ -136,10 +141,15 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
 
     const hasRows = rows.length > 0
 
-    // Find the scroll container when rows change (the spacers already give the body its full height)
-    useLayoutEffect(() => {
+    // The scroll container can change when the body height changes: e.g. scroll.y starts to scroll only after
+    // real row heights replace the estimated ones. setState with the same element is a no-op
+    const updateScrollElement = () => {
       if (topSpacerRef.current) setScrollElement(getScrollParent(topSpacerRef.current))
-    }, [rows.length])
+    }
+    const updateScrollElementRef = useRef(updateScrollElement)
+    updateScrollElementRef.current = updateScrollElement
+
+    useLayoutEffect(updateScrollElement, [rows.length])
 
     // After every render: where rows start inside the scroll container (toolbar, header... above) and row heights
     useLayoutEffect(() => {
@@ -151,10 +161,14 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
     })
 
     // Row content can change without a render (images, fonts, column resize) — remeasure on body resize
+    // and check the scroll container again
     useLayoutEffect(() => {
       const tbody = topSpacerRef.current?.parentElement
       if (!tbody) return
-      const observer = new ResizeObserver(() => measureRef.current())
+      const observer = new ResizeObserver(() => {
+        measureRef.current()
+        updateScrollElementRef.current()
+      })
       observer.observe(tbody)
       return () => observer.disconnect()
     }, [hasRows])
@@ -179,21 +193,21 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
 
 export const VirtualTanstack = <T extends TableRecord = TableRecord>(
   Component: TableComponent<T>
-): TableComponent<T> => function VirtualTanstackModule ({ __EXPERIMENTAL__VIRTUAL_TANSTACK, __EXPERIMENTAL__VIRTUAL, ...props }) {
-  const isVirtualTanstack = Boolean(__EXPERIMENTAL__VIRTUAL_TANSTACK ?? __EXPERIMENTAL__VIRTUAL)
-
-  // a function body is a custom body renderer (e.g. useVT) that virtualizes on its own
-  const virtualizesBody = isVirtualTanstack && typeof props.components?.body !== 'function'
+): TableComponent<T> => function VirtualTanstackModule (props) {
+  const body = props.components?.body
+  // a function body is a custom body renderer that virtualizes on its own
+  const isVirtualTanstack = Boolean(props.__EXPERIMENTAL__VIRTUAL_TANSTACK) && typeof body !== 'function'
 
   const components = useMemo(() => {
-    const body = props.components?.body
-    if (!virtualizesBody || typeof body === 'function') return props.components
+    if (!isVirtualTanstack || typeof body === 'function') return props.components
 
     return {
       ...props.components,
       body: { ...body, wrapper: createVirtualTanstackBody(body?.wrapper ?? 'tbody') }
     }
-  }, [virtualizesBody, props.components])
+  }, [isVirtualTanstack, props.components])
 
-  return <Component {...props} __EXPERIMENTAL__VIRTUAL_TANSTACK={virtualizesBody} components={components} />
+  if (!isVirtualTanstack) return <Component {...props} />
+
+  return <Component {...props} components={components} />
 }
