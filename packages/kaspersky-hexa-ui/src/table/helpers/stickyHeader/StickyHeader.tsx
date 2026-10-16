@@ -10,6 +10,7 @@ import {
   TableCssProps
 } from '../../tableCss'
 import { findParentForClassName, isColumnVisible } from '../common'
+import { VirtualizationColumnsWidthHelper } from '../virtualizationStickyHeader/VirtualizationColumnsWidthHelper'
 
 import { useResizableColumnsContext } from './ResizableColumnsContext'
 
@@ -46,9 +47,10 @@ export const TableStickyHeader = styled.div.withConfig({
   }
 `
 
-export function StickyHeaderWrapper ({ children, className }: {
+export function StickyHeaderWrapper ({ children, className, isVirtualization }: {
   children: React.ReactNode,
-  className: string
+  className: string,
+  isVirtualization?: boolean
 }) {
   const portalRef = useRef<HTMLTableElement | null>(null)
   if (!portalRef.current) {
@@ -89,12 +91,16 @@ export function StickyHeaderWrapper ({ children, className }: {
   return (
     <thead ref={theadRef} style={{ visibility: 'collapse' }}>
       <tr>
-        {renderColumnsWidthHelper('th', 'column')}
+        {isVirtualization
+          ? <VirtualizationColumnsWidthHelper Tag="th" classname="column" bodyTheadRef={theadRef} headerTableRef={portalRef} syncWidths />
+          : renderColumnsWidthHelper('th', 'column')}
       </tr>
       {portalRef.current ? createPortal(
         <>
           <colgroup>
-            {renderColumnsWidthHelper('col', 'col')}
+            {isVirtualization
+              ? <VirtualizationColumnsWidthHelper Tag="col" classname="col" bodyTheadRef={theadRef} headerTableRef={portalRef} />
+              : renderColumnsWidthHelper('col', 'col')}
           </colgroup>
           <thead className={className}>
             {children}
