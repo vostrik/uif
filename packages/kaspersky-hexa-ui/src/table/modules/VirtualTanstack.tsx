@@ -14,6 +14,7 @@ import React, {
   isValidElement,
   ReactElement,
   ReactNode,
+  useCallback,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -25,6 +26,7 @@ import { TableRecord } from '../types'
 import { TableComponent } from './index'
 
 const ESTIMATED_ROW_HEIGHT = 40
+const estimateSize = () => ESTIMATED_ROW_HEIGHT
 const OVERSCAN = 10
 export const VIRTUAL_TANSTACK_SPACER_CLASS = 'hexa-ui-table-virtual-tanstack-spacer'
 
@@ -88,6 +90,9 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
       return [bodyRows, otherRows]
     }, [children])
 
+    // stable while rows are the same: a new function makes the virtualizer recompute all measurements
+    const getItemKey = useCallback((index: number) => rows[index]?.key ?? index, [rows])
+
     const topSpacerRef = useRef<HTMLTableRowElement>(null)
     const [scrollElement, setScrollElement] = useState<ScrollElement | null>(null)
     const [scrollMargin, setScrollMargin] = useState(0)
@@ -98,8 +103,8 @@ const createVirtualTanstackBody = (BaseWrapper: ElementType) =>
       enabled: Boolean(scrollElement), // starts after the scroll container is found
       getScrollElement: () => scrollElement as Element | null,
       initialOffset: () => getScrollOffset(scrollElement),
-      getItemKey: index => rows[index]?.key ?? index,
-      estimateSize: () => ESTIMATED_ROW_HEIGHT,
+      getItemKey,
+      estimateSize,
       overscan: OVERSCAN,
       scrollMargin,
       observeElementRect: (instance, cb) => {
