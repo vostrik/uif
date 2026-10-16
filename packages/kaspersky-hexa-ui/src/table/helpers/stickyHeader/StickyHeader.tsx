@@ -10,7 +10,7 @@ import {
   TableCssProps
 } from '../../tableCss'
 import { findParentForClassName, isColumnVisible } from '../common'
-import { useStickyHeaderBodySync } from '../virtual/useStickyHeaderBodySync'
+import { renderVirtualColumnsWidthHelper, useStickyHeaderBodySync } from '../virtual/useStickyHeaderBodySync'
 
 import { useResizableColumnsContext } from './ResizableColumnsContext'
 
@@ -58,7 +58,7 @@ export function StickyHeaderWrapper ({ children, className, isVirtual }: {
   }
   const theadRef = useRef<HTMLTableSectionElement>(null)
   const { columns, hasRowSelection } = useResizableColumnsContext()
-  const renderVirtualColumnsWidthHelper = useStickyHeaderBodySync({ isVirtual, theadRef, portalRef, columns })
+  const virtualColumnSlots = useStickyHeaderBodySync({ isVirtual, theadRef, portalRef, columns })
 
   useEffect(() => {
     if (portalRef.current && theadRef.current) {
@@ -79,7 +79,9 @@ export function StickyHeaderWrapper ({ children, className, isVirtual }: {
   }, [])
 
   function renderColumnsWidthHelper (Tag: React.ElementType, classname: string) {
-    if (renderVirtualColumnsWidthHelper) return renderVirtualColumnsWidthHelper(Tag, classname)
+    if (isVirtual && virtualColumnSlots) {
+      return renderVirtualColumnsWidthHelper(Tag, classname, virtualColumnSlots, columns)
+    }
 
     return (
       <>
