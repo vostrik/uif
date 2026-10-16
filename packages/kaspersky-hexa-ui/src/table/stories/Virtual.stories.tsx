@@ -271,11 +271,35 @@ const virtualColumns: TableColumn<VirtualRow>[] = [
     title: 'Tags',
     width: 220,
     render: (tags: string[]) => (
-      <Space gap={4} direction="vertical">
+      <Space gap={4} direction="vertical" align="flex-start">
         {tags.map(tag => <Tag key={tag}>{tag}</Tag>)}
       </Space>
     )
-  }
+  },
+  // more columns than fit on the screen: 20 in total, the table scrolls horizontally
+  ...[
+    'IP address',
+    'OS',
+    'Agent version',
+    'Owner',
+    'Group',
+    'Last seen',
+    'CPU',
+    'RAM',
+    'Disk',
+    'Location',
+    'Policy',
+    'Threats',
+    'Updates',
+    'Uptime',
+    'Vendor',
+    'Serial number'
+  ].map((title, i): TableColumn<VirtualRow> => ({
+    key: `extra-${i}`,
+    title,
+    width: 140,
+    render: (_: unknown, row: VirtualRow) => `${title} ${(row.key * (i + 7)) % 997}`
+  }))
 ]
 
 // Hoisted: the table re-applies `expandable` when its identity changes
@@ -286,6 +310,9 @@ const virtualExpandable: ITableProps<VirtualRow>['expandable'] = {
 
 export const VirtualStickyHeader40k: Story = {
   name: 'Virtual, sticky header, 40k rows',
+  args: {
+    resizingMode: 'scroll'
+  },
   render: (args: ITableProps) => {
     const [selected, setSelected] = useState<Key[]>([])
     const [dataSource, setDataSource] = useState(virtualData)

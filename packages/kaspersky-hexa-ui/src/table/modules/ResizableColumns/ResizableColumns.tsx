@@ -294,16 +294,20 @@ export const ResizableColumns = <T extends TableRecord = TableRecord> (
               return acc
             }, [])
             let index = 0
-            stickyHeaderColumns.forEach(stickyHeaderColumn => {
-              if (!stickyHeaderColumn.classList.contains('ant-table-selection-column')) {
-                const width = stickyHeaderColumn.getBoundingClientRect().width
-                const key = hasRowSelection ? index + 1 : index
-                const position = visiblePositions[index]
-                if (position !== undefined && colgroupColumns[key]?.clientWidth !== width) {
-                  next[position] = { ...next[position], width }
-                }
-                index++
+            stickyHeaderColumns.forEach((stickyHeaderColumn, domIndex) => {
+              const { classList } = stickyHeaderColumn
+              // service columns (selection, expand) are not in `columns`
+              if (classList.contains('ant-table-selection-column') || classList.contains('ant-table-row-expand-icon-cell')) {
+                return
               }
+              const width = stickyHeaderColumn.getBoundingClientRect().width
+              const position = visiblePositions[index]
+              // header and body tables have the same column structure, so the <th> index is the <col> index
+              const bodyWidth = colgroupColumns[domIndex]?.getBoundingClientRect().width
+              if (position !== undefined && (bodyWidth === undefined || Math.abs(bodyWidth - width) > 0.5)) {
+                next[position] = { ...next[position], width }
+              }
+              index++
             })
 
             return next
