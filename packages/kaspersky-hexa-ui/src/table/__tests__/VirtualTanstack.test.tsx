@@ -4,7 +4,7 @@ import React, { ComponentType } from 'react'
 import { STICKY_HEADER_CLASS, StickyHeaderWrapper, VirtualStickyHeaderWrapper } from '../helpers/stickyHeader'
 import { ResizableColumnsContext } from '../helpers/stickyHeader/ResizableColumnsContext'
 import { TableComponent } from '../modules'
-import { VIRTUAL_SPACER_CLASS, VirtualTanstack } from '../modules/Virtual'
+import { VIRTUAL_SPACER_CLASS, VirtualTanstack } from '../modules/VirtualTanstack'
 import { TestTable } from '../test-utils/TableTestingClass'
 import { ITableProps, TableColumn, TableRecord } from '../types'
 
