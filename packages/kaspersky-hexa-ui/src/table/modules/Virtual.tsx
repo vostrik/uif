@@ -20,7 +20,6 @@ import React, {
   useState
 } from 'react'
 
-import { VirtualTableContext } from '../helpers/virtual/VirtualTableContext'
 import { TableRecord } from '../types'
 
 import { TableComponent } from './index'
@@ -178,9 +177,9 @@ const createVirtualBody = (BaseWrapper: ElementType) =>
     )
   }
 
-export const Virtual = <T extends TableRecord = TableRecord>(
+export const VirtualTanstack = <T extends TableRecord = TableRecord>(
   Component: TableComponent<T>
-): TableComponent<T> => function VirtualModule ({ __EXPERIMENTAL__VIRTUAL_TANSTACK, __EXPERIMENTAL__VIRTUAL, ...props }) {
+): TableComponent<T> => function VirtualTanstackModule ({ __EXPERIMENTAL__VIRTUAL_TANSTACK, __EXPERIMENTAL__VIRTUAL, ...props }) {
   const isVirtual = Boolean(__EXPERIMENTAL__VIRTUAL_TANSTACK ?? __EXPERIMENTAL__VIRTUAL)
 
   // a function body is a custom body renderer (e.g. useVT) that virtualizes on its own
@@ -196,9 +195,5 @@ export const Virtual = <T extends TableRecord = TableRecord>(
     }
   }, [virtualizesBody, props.components])
 
-  return (
-    <VirtualTableContext.Provider value={virtualizesBody}>
-      <Component {...props} components={components} />
-    </VirtualTableContext.Provider>
-  )
+  return <Component {...props} __EXPERIMENTAL__VIRTUAL_TANSTACK={virtualizesBody} components={components} />
 }
